@@ -10,6 +10,12 @@
 @layer utilities {
   .grid-main {
     @apply grid;
-    grid-template-columns: 0.1673fr 0.2967fr 0.0954fr 0.2358fr 0.2048fr;
+    grid-template-columns: 0.1778fr 0.1358fr 0.3053fr 0.3811fr;
+  }
+
+  @media screen("sm-t") {
+    .grid-main {
+      grid-template-columns: 0.1673fr 0.2967fr 0.0954fr 0.2358fr 0.2048fr;
+    }
   }
 }
