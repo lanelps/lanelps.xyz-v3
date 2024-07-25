@@ -2,6 +2,8 @@
 import "@styles/index.css";
 
 import Logo from "@components/Logo.astro";
+
+const { logoActive } = Astro.props;
 ---
 
 <html lang="en">
@@ -13,17 +15,25 @@ import Logo from "@components/Logo.astro";
     <title>Astro</title>
   </head>
   <body class="relative">
-    <Logo />
+    <Logo active={logoActive} />
     <div
-      class="fixed inset-0 w-full h-full grid-main pointer-events-none select-none"
+      class="fixed inset-0 w-full h-full grid-main pointer-events-none select-none opacity-20"
     >
-      <div class="w-full border-l border-light-grey"></div>
-      <div class="w-full border-l border-light-grey"></div>
-      <div class="w-full border-l border-light-grey"></div>
-      <div class="w-full border-l border-light-grey"></div>
-      <div class="w-full border-l border-light-grey"></div>
+      <div class="w-full border-l border-grey"></div>
+      <div class="w-full border-l border-grey"></div>
+      <div class="w-full border-l border-grey"></div>
+      <div class="w-full border-l border-grey"></div>
+      <div class="w-full border-l border-grey"></div>
     </div>
 
-    <slot />
+    <main
+      class="transition-[margin-top]"
+      class:list={{
+        "mt-[5.8125vw]": !logoActive,
+        "mt-[2.90625vw]": logoActive,
+      }}
+    >
+      <slot />
+    </main>
   </body>
 </html>
