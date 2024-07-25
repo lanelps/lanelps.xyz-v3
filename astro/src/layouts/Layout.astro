@@ -16,16 +16,17 @@ const { logoActive } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body class="relative">
+  <body
+    style={{
+      "--mobile-margin": "21.33333333vw",
+      "--desktop-margin": logoActive ? "2.90625vw" : "5.8125vw",
+    }}
+    class="relative w-screen h-screen overflow-hidden"
+  >
     <Logo active={logoActive} />
     <Guides />
 
-    <main
-      class:list={{
-        "mt-[21.33333333vw] sm-t:mt-[5.8125vw]": !logoActive,
-        "mt-[21.33333333vw] sm-t:mt-[2.90625vw]": logoActive,
-      }}
-    >
+    <main class="w-full h-full">
       <slot />
     </main>
 
