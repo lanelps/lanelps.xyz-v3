@@ -12,8 +12,18 @@ import Logo from "@components/Logo.astro";
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body>
+  <body class="relative">
     <Logo />
+    <div
+      class="fixed inset-0 w-full h-full grid-main pointer-events-none select-none"
+    >
+      <div class="w-full border-l border-light-grey"></div>
+      <div class="w-full border-l border-light-grey"></div>
+      <div class="w-full border-l border-light-grey"></div>
+      <div class="w-full border-l border-light-grey"></div>
+      <div class="w-full border-l border-light-grey"></div>
+    </div>
+
     <slot />
   </body>
 </html>
