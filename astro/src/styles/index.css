@@ -19,3 +19,9 @@
     }
   }
 }
+
+@layer components {
+  .link {
+    @apply w-max text-b2 !text-blue bg-light-grey;
+  }
+}
