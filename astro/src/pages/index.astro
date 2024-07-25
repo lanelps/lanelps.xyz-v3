@@ -2,13 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import FeaturedProjects from "@components/FeaturedProjects.svelte";
 
-interface ProjectType {
-  id: number;
-  title: string;
-  category: string[];
-  description: string;
-  year: number;
-}
+import type { ProjectType } from "../types";
 
 const projects: ProjectType[] = [
   {
