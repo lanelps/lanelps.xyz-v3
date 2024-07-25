@@ -49,27 +49,27 @@ export default {
   theme: {
     fontFamily: {
       main: ["Helvetica Neue", ...defaultTheme.fontFamily.sans],
-      screens: {
-        "xxl-d": `1920px`,
-        "xl-d": `1728px`,
-        "lg-d": `1512px`,
-        "md-d": `1440px`,
-        "sm-d": `1280px`,
-        //
-        "lg-t": `1024px`,
-        "md-t": `834px`,
-        "sm-t": `744px`,
-        //
-        "lg-m": `428px`,
-        "md-m": `414px`,
-        "sm-m": `360px`,
-        "xs-m": `320px`,
-      },
-      gridColumn: gridSpan,
-      gridColumnStart: gridColumns,
-      gridColumnEnd: gridColumns,
-      spacing: spacing(),
     },
+    screens: {
+      "xxl-d": `1920px`,
+      "xl-d": `1728px`,
+      "lg-d": `1512px`,
+      "md-d": `1440px`,
+      "sm-d": `1280px`,
+      //
+      "lg-t": `1024px`,
+      "md-t": `834px`,
+      "sm-t": `744px`,
+      //
+      "lg-m": `428px`,
+      "md-m": `414px`,
+      "sm-m": `360px`,
+      "xs-m": `320px`,
+    },
+    gridColumn: gridSpan,
+    gridColumnStart: gridColumns,
+    gridColumnEnd: gridColumns,
+    spacing: spacing(),
     extend: {},
   },
   plugins: [],
