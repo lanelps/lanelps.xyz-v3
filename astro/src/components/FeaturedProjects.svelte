@@ -64,11 +64,32 @@
   <div
     class="fixed top-[var(--logo-desktop)] left-0 w-full h-[calc(100%-var(--logo-desktop)-var(--footer-height))] grid-main"
   >
-    <button class="col-start-1 col-span-1" onclick={handlePrev}>
-      <span class="fixed link">Prev</span>
+    <button
+      class="col-start-1 col-span-1 group hover:cursor-none"
+      onclick={handlePrev}
+    >
+      <span
+        style="transform: translate({mouseX}px,{mouseY}px)"
+        class="link fixed top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none"
+        >Prev</span
+      >
     </button>
-    <button class="col-start-5 col-span-1" onclick={handleNext}>
-      <span class="fixed link">Next</span>
+    <button class="col-start-3 col-span-1 group hover:cursor-none">
+      <span
+        style="transform: translate({mouseX}px,{mouseY}px)"
+        class="link fixed top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none"
+        >View</span
+      >
+    </button>
+    <button
+      class="col-start-5 col-span-1 group hover:cursor-none"
+      onclick={handleNext}
+    >
+      <span
+        style="transform: translate({mouseX}px,{mouseY}px)"
+        class="link fixed top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none"
+        >Next</span
+      >
     </button>
   </div>
 </section>
