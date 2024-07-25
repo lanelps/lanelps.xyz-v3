@@ -6,6 +6,7 @@
   let activeProject = $state(0);
   let mouseY = $state(0);
   let mouseX = $state(0);
+  
   let projectList: HTMLUListElement;
 
   const handlePrev = () => {
@@ -24,7 +25,7 @@
     }
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent) => {
     mouseY = e.clientY;
     mouseX = e.clientX;
   };
