@@ -2,6 +2,8 @@
 import "@styles/index.css";
 
 import Logo from "@components/Logo.astro";
+import Guides from "@components/Guides.astro";
+import Footer from "@components/Footer.astro";
 
 const { logoActive } = Astro.props;
 ---
@@ -16,15 +18,7 @@ const { logoActive } = Astro.props;
   </head>
   <body class="relative">
     <Logo active={logoActive} />
-    <div
-      class="fixed inset-0 w-full h-full grid-main pointer-events-none select-none opacity-20"
-    >
-      <div class="w-full"></div>
-      <div class="w-full border-l border-grey"></div>
-      <div class="w-full border-l border-grey"></div>
-      <div class="w-full border-l border-grey"></div>
-      <div class="hidden sm-t:block w-full border-l border-grey"></div>
-    </div>
+    <Guides />
 
     <main
       class:list={{
@@ -34,5 +28,7 @@ const { logoActive } = Astro.props;
     >
       <slot />
     </main>
+
+    <Footer />
   </body>
 </html>
