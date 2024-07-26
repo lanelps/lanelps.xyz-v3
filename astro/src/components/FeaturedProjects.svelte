@@ -6,7 +6,7 @@
   let activeProject = $state(0);
   let mouseY = $state(0);
   let mouseX = $state(0);
-  
+
   let projectList: HTMLUListElement;
 
   const handlePrev = () => {
@@ -41,54 +41,54 @@
 
 <svelte:window on:mousemove={handleMouseMove} />
 
-<section class="w-full h-full">
+<section class="w-full h-full mt-[--logo-mobile] sm-t:mt-0 text-deep-purple">
   <ul bind:this={projectList} class="w-full h-full overflow-hidden">
     {#each projects as project, projectIndex}
       <li class="w-full h-full text-b2">
         <header
-          style="transform: translateY({mouseY}px)"
-          class="w-full grid-main h-max pointer-events-none select-none will-change-transform"
+          style="--ty: {mouseY}px;"
+          class="w-full grid-main h-max pointer-events-none select-none will-change-transform sm-t:translate-y-[var(--ty)]"
         >
-          <span class="flex gap-[0.25ch] col-span-2">
+          <span class="space-x-[0.25ch] col-span-3 sm-t:col-span-2">
             <span>{projectIndex + 1}/{projects.length}</span>
-            <h2 class="text-blue">{project.title}</h2>
-            <p>{project.category.join(", ")}</p>
+            <h2 class="text-blue inline">{project.title}</h2>
+            <p class="inline">{project.category.join(", ")}</p>
           </span>
 
-          <p class="col-span-2">{project.description}</p>
-          <p>{project.year}</p>
+          <p class="sm-t:col-span-2">{project.description}</p>
+          <p class="hidden sm-t:block">{project.year}</p>
         </header>
       </li>
     {/each}
   </ul>
 
   <div
-    class="fixed top-[var(--logo-desktop)] left-0 w-full h-[calc(100%-var(--logo-desktop)-var(--footer-height))] grid-main"
+    class="fixed top-[var(--logo-mobile)] sm-t:top-[var(--logo-desktop)] left-0 w-full h-[calc(100%-var(--logo-mobile)-var(--footer-height))] sm-t:h-[calc(100%-var(--logo-desktop)-var(--footer-height))] grid-main"
   >
     <button
-      class="col-start-1 col-span-1 group hover:cursor-none"
+      class="relative sm-t:[position:unset] col-start-1 col-span-1 group hover:cursor-none block"
       onclick={handlePrev}
     >
       <span
-        style="transform: translate({mouseX}px,{mouseY}px)"
-        class="link fixed top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none"
+        style="--tx: {mouseX}px; --ty:{mouseY}px;"
+        class="link absolute sm-t:fixed top-[3lh] sm-t:top-0 left-0 sm-t:opacity-0 sm-t:translate-x-[var(--tx)] sm-t:translate-y-[var(--ty)] transition-opacity group-hover:opacity-100 pointer-events-none"
         >Prev</span
       >
     </button>
-    <button class="col-start-3 col-span-1 group hover:cursor-none">
+    <button class="col-start-3 col-span-1 group hover:cursor-none block">
       <span
-        style="transform: translate({mouseX}px,{mouseY}px)"
-        class="link fixed top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none"
+        style="--tx: {mouseX}px; --ty:{mouseY}px;"
+        class="link hidden sm-t:block fixed top-0 left-0 opacity-0 sm-t:translate-x-[var(--tx)] sm-t:translate-y-[var(--ty)] transition-opacity group-hover:opacity-100 pointer-events-none"
         >View</span
       >
     </button>
     <button
-      class="col-start-5 col-span-1 group hover:cursor-none"
+      class="relative sm-t:[position:unset] sm-t:col-start-5 col-span-1 group hover:cursor-none block"
       onclick={handleNext}
     >
       <span
-        style="transform: translate({mouseX}px,{mouseY}px)"
-        class="link fixed top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none"
+        style="--tx: {mouseX}px; --ty:{mouseY}px;"
+        class="link absolute sm-t:fixed top-[3lh] sm-t:top-0 right-0 sm-t:right-[unset] sm-t:left-0 sm-t:opacity-0 sm-t:translate-x-[var(--tx)] sm-t:translate-y-[var(--ty)] transition-opacity group-hover:opacity-100 pointer-events-none"
         >Next</span
       >
     </button>
