@@ -75,7 +75,7 @@ export default {
         "deep-purple": "#141420",
         "off-white": "#F6F6F6",
         "light-grey": "#D6D6D6",
-        grey: "#4E4E4E",
+        grey: "#B1B1B1",
         "dark-grey": "#1C1C1C",
         blue: "#0019FF",
       },
