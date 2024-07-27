@@ -4,6 +4,7 @@ import "@styles/index.css";
 import Logo from "@components/Logo.astro";
 import Guides from "@components/Guides.astro";
 import Footer from "@components/Footer.astro";
+import Contact from "@components/Contact.svelte";
 
 const { logoActive } = Astro.props;
 ---
@@ -22,15 +23,17 @@ const { logoActive } = Astro.props;
       "--logo-desktop": logoActive ? "2.90625vw" : "5.8125vw",
       "--footer-height": "28.6px",
     }}
-    class="relative w-screen h-screen overflow-hidden"
+    class="relative w-screen h-screen overflow-hidden bg-white grid-main"
   >
     <Logo active={logoActive} />
     <Guides />
 
     <Footer />
 
-    <main class="w-full h-full">
+    <main class="w-full h-full col-span-full">
       <slot />
     </main>
+
+    <Contact />
   </body>
 </html>
