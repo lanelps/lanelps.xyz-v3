@@ -72,12 +72,30 @@ export default {
     spacing: spacing(),
     extend: {
       colors: {
-        "deep-purple": "#141420",
-        "off-white": "#F6F6F6",
-        "light-grey": "#D6D6D6",
-        grey: "#B1B1B1",
-        "dark-grey": "#1C1C1C",
-        blue: "#0019FF",
+        "deep-purple": {
+          DEFAULT: "#141420",
+          invert: "#EBEBDF",
+        },
+        "off-white": {
+          DEFAULT: "#F6F6F6",
+          invert: "#090909",
+        },
+        "light-grey": {
+          DEFAULT: "#D6D6D6",
+          invert: "#292929",
+        },
+        grey: {
+          DEFAULT: "#B1B1B1",
+          invert: "#4E4E4E",
+        },
+        "dark-grey": {
+          DEFAULT: "#1C1C1C",
+          invert: "#E3E3E3",
+        },
+        blue: {
+          DEFAULT: "#0019FF",
+          invert: "#D6BD29",
+        },
       },
     },
   },
