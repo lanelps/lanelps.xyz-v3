@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from "tailwindcss/defaultTheme";
+import textStrokePlugin from "./src/utils/tailwindcss/plugins/text-stroke.ts";
 
 const createTailWindGrid = (size = 12) => {
   const gridSpan = { "span-full": `1 / -1` };
@@ -102,5 +103,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [textStrokePlugin],
 };
