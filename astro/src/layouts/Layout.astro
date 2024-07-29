@@ -9,11 +9,11 @@ import Contact from "@components/Contact.svelte";
 const { logoActive } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="w-screen h-screen overflow-hidden">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
@@ -23,7 +23,7 @@ const { logoActive } = Astro.props;
       "--logo-desktop": logoActive ? "2.90625vw" : "5.8125vw",
       "--footer-height": "28.6px",
     }}
-    class="relative w-screen h-screen overflow-hidden bg-white grid-main"
+    class="relative w-full h-full overflow-hidden bg-white grid-main"
   >
     <Logo active={logoActive} />
     <Guides />
