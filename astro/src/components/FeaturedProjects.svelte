@@ -41,23 +41,27 @@
 
 <svelte:window on:mousemove={handleMouseMove} />
 
-<section class="w-full h-full mt-[--logo-mobile] sm-t:mt-0 text-deep-purple">
+<section class="w-full h-full mt-[--logo-mobile] sm-t:mt-0">
   <ul bind:this={projectList} class="w-full h-full overflow-hidden">
     {#each projects as project, projectIndex}
-      <li class="w-full h-full text-b2">
+      <li class="relative w-full h-full text-b2">
         <header
           style="--ty: {mouseY}px;"
-          class="w-full grid-main h-max pointer-events-none select-none will-change-transform sm-t:translate-y-[var(--ty)]"
+          class="absolute top-0 left-0 w-full grid-main h-max pointer-events-none select-none will-change-transform sm-t:translate-y-[var(--ty)] z-10 mix-blend-difference text-deep-purple-invert"
         >
           <span class="space-x-[0.25ch] col-span-3 sm-t:col-span-2">
             <span>{projectIndex + 1}/{projects.length}</span>
-            <h2 class="text-blue inline">{project.title}</h2>
+            <h2 class="text-blue-invert inline">{project.title}</h2>
             <p class="inline">{project.category.join(", ")}</p>
           </span>
 
           <p class="sm-t:col-span-2">{project.description}</p>
           <p class="hidden sm-t:block">{project.year}</p>
         </header>
+
+        <div class="w-full h-full grid-main">
+          <div class="bg-[#89A39D] col-start-2 col-span-3"></div>
+        </div>
       </li>
     {/each}
   </ul>
