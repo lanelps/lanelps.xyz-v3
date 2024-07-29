@@ -3,7 +3,7 @@ import "@styles/index.css";
 
 import Logo from "@components/Logo.astro";
 import Guides from "@components/Guides.astro";
-import Footer from "@components/Footer.astro";
+import Footer from "@components/Footer.svelte";
 import Contact from "@components/Contact.svelte";
 
 const { logoActive } = Astro.props;
@@ -28,12 +28,12 @@ const { logoActive } = Astro.props;
     <Logo active={logoActive} />
     <Guides />
 
-    <Footer />
+    <Footer client:load />
 
     <main class="w-full h-full col-span-full">
       <slot />
     </main>
 
-    <Contact />
+    <Contact client:load />
   </body>
 </html>
