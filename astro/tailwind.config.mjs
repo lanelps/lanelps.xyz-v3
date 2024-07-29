@@ -97,6 +97,9 @@ export default {
           invert: "#D6BD29",
         },
       },
+      transitionDuration: {
+        DEFAULT: "300ms",
+      },
     },
   },
   plugins: [],
