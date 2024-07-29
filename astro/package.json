@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.8.2",
-    "@astrojs/netlify": "^5.4.0",
     "@astrojs/svelte": "^5.7.0",
     "@astrojs/tailwind": "^5.1.0",
+    "@sanity/astro": "^3.1.4",
+    "@sanity/client": "^6.21.1",
+    "@sanity/visual-editing": "^2.1.6",
     "astro": "^4.12.1",
+    "sanity": "^3.52.2",
     "svelte": "5.0.0-next.196",
     "tailwindcss": "^3.4.6",
     "typescript": "^5.5.3"
