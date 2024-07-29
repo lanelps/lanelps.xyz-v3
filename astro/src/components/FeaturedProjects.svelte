@@ -60,7 +60,9 @@
         </header>
 
         <div class="w-full h-full grid-main">
-          <div class="bg-[#89A39D] col-start-2 col-span-3"></div>
+          <div
+            class="bg-[#89A39D] sm-t:col-start-2 col-span-full sm-t:col-span-3"
+          ></div>
         </div>
       </li>
     {/each}
