@@ -24,4 +24,7 @@
   .link {
     @apply w-max text-b2 !text-blue bg-light-grey;
   }
+  .link-invert {
+    @apply w-max text-b2 !text-blue-invert bg-light-grey-invert;
+  }
 }
