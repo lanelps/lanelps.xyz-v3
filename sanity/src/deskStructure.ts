@@ -6,6 +6,7 @@ const DOCUMENT_TYPES_IN_STRUCTURE = [
   // `globals`,
   `media.tag`,
   `homePage`,
+  `project`,
   `settings`,
   ...documents.map((document) => document.type),
 ] as string[]
@@ -20,6 +21,12 @@ export default (S) =>
         title: `Home`,
         type: `homePage`,
         icon: () => `🏠`,
+      }),
+      S.divider(),
+      generateDocumentStructure(S, {
+        title: `Projects`,
+        type: `project`,
+        icon: () => `📁`,
       }),
       S.divider(),
       generateSingletonStructure(S, {
