@@ -1,5 +1,11 @@
 <script>
   import { contact } from "@stores/contact.svelte.ts";
+  import { project } from "@stores/project.svelte.ts";
+
+  const handleClick = () => {
+    contact.toggle();
+    project.close();
+  };
 </script>
 
 <footer
@@ -10,6 +16,6 @@
     class="col-start-1 col-span-2 sm-t:col-start-2 sm-t:col-span-1 link-invert"
     >Development</a
   >
-  <button onclick={contact.toggle} class="link-invert">Contact</button>
+  <button onclick={handleClick} class="link-invert">Contact</button>
   <a href="/lab" class="link-invert">Lab</a>
 </footer>
