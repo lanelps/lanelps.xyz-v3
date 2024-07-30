@@ -2,8 +2,10 @@
   import { contact } from "@stores/contact.svelte";
 
   const handleKeyDown = (event) => {
+    if (!contact.isActive) return;
+
     if (event.key === "Escape") {
-      contact.toggle();
+      contact.close();
     }
   };
 </script>
