@@ -13,9 +13,33 @@
     grid-template-columns: 0.1778fr 0.1358fr 0.3053fr 0.3811fr;
   }
 
+  .mt-logo {
+    @apply mt-[var(--logo-mobile)];
+  }
+
+  .top-logo {
+    @apply top-[var(--logo-mobile)];
+  }
+
+  .h-body {
+    @apply h-[calc(100%-var(--logo-mobile)-var(--footer-height))];
+  }
+
   @media screen("sm-t") {
     .grid-main {
       grid-template-columns: 0.1673fr 0.2967fr 0.0954fr 0.2358fr 0.2048fr;
+    }
+
+    .mt-logo {
+      @apply mt-[var(--logo-desktop)];
+    }
+
+    .top-logo {
+      @apply top-[var(--logo-desktop)];
+    }
+
+    .h-body {
+      @apply h-[calc(100%-var(--logo-desktop)-var(--footer-height))];
     }
   }
 }

@@ -68,9 +68,7 @@
     {/each}
   </ul>
 
-  <div
-    class="fixed top-[var(--logo-mobile)] sm-t:top-[var(--logo-desktop)] left-0 w-full h-[calc(100%-var(--logo-mobile)-var(--footer-height))] sm-t:h-[calc(100%-var(--logo-desktop)-var(--footer-height))] grid-main"
-  >
+  <div class="fixed top-logo left-0 w-full h-body grid-main">
     <button
       class="relative sm-t:[position:unset] col-start-1 col-span-1 group hover:cursor-none block"
       onclick={handlePrev}
