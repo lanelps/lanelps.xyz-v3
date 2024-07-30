@@ -2,6 +2,8 @@
 import { sanityClient } from "sanity:client";
 
 import Layout from "@layouts/Layout.astro";
+import SanityImage from "@components/SanityImage.astro";
+import CloudinaryVideo from "@components/CloudinaryVideo.astro";
 import { projectsQuery } from "@utils/queires";
 
 import type { Project } from "../../types";
@@ -9,20 +11,49 @@ import type { Project } from "../../types";
 export async function getStaticPaths() {
   const projects: Project[] = await sanityClient.fetch(projectsQuery);
 
-  return projects.map(({ slug, title }) => {
+  return projects.map((project) => {
     return {
-      params: { slug: slug.current },
-      props: { title },
+      params: { slug: project.slug.current },
+      props: { project },
     };
   });
 }
 
-const { title } = Astro.props;
+const { title, description, role, collaborators, software, gallery } =
+  Astro.props.project;
 ---
 
 <Layout logoActive>
-  <header class="mt-logo text-h1">
-    <h1 class="inline text-grey">{title}</h1>
-    <button class="inline text-dark-grey">Info</button>
+  <header class="relative mt-logo text-h1 z-10 mix-blend-difference">
+    <h1 class="inline text-grey-invert">{title}</h1>
+    <button class="inline text-dark-grey-invert">Info</button>
   </header>
+
+  <ul
+    class="absolute inset-0 w-full h-full overflow-y-scroll snap-y snap-mandatory"
+  >
+    {
+      gallery.map((item) => {
+        const layoutClasses = {
+          full: "col-span-full",
+          center: "col-start-2 col-span-3 !object-contain",
+          left: "col-span-4",
+          right: "col-start-2 col-span-full",
+        };
+
+        const layoutClass = layoutClasses[item.layout] || "";
+
+        return (
+          <li class="w-full h-full snap-center grid-main">
+            {item.type === "image" && (
+              <SanityImage image={item.image} class={layoutClass} />
+            )}
+            {item.type === "video" && (
+              <CloudinaryVideo video={item.video} class={layoutClass} />
+            )}
+          </li>
+        );
+      })
+    }
+  </ul>
 </Layout>
