@@ -2,16 +2,17 @@
 const { active } = Astro.props;
 ---
 
-<div
-  class="fixed top-0 left-0 w-screen group select-none z-50 mix-blend-difference"
+<a
+  href="/"
+  class="fixed top-0 left-0 w-screen group select-none z-50 mix-blend-difference transition-transform"
+  class:list={{ "-translate-y-1/2 hover:translate-y-0": active }}
 >
   <!-- Desktop -->
   <svg
     viewBox="0 0 1600 93"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    class="hidden sm-t:block text-blue-invert transition-transform"
-    class:list={{ "-translate-y-1/2": active }}
+    class="hidden sm-t:block text-blue-invert"
   >
     <g>
       <g>
@@ -329,4 +330,4 @@ const { active } = Astro.props;
       </g>
     </g>
   </svg>
-</div>
+</a>
