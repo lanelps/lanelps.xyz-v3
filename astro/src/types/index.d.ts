@@ -5,3 +5,8 @@ export interface ProjectType {
   description: string;
   year: number;
 }
+
+export interface Project {
+  slug: { current: string };
+  title: string;
+}
