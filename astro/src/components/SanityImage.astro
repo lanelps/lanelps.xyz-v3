@@ -2,7 +2,7 @@
 import { getImageProps } from "@utils/sanity";
 import type { Image } from "../types";
 
-const { image: node, width } = Astro.props;
+const { class: className, image: node, width } = Astro.props;
 let image: Image | undefined;
 
 try {
@@ -15,7 +15,8 @@ try {
 {
   image && (
     <img
-      class="w-full h-full object-cover"
+      class={`w-full h-full object-cover ${className || ""}`}
+      loading="lazy"
       src={image.src}
       srcset={image.srcset}
       sizes={image.sizes}
