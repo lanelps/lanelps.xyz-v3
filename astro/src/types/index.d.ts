@@ -109,3 +109,14 @@ export type GetImageProps = (props: {
   minimumWidthStep?: number;
   customWidthSteps?: number[];
 }) => Image;
+
+export type GenerateCloudinaryVideoURL = (
+  publicId: string,
+  options?:
+    | {
+        width?: number | undefined;
+        quality?: string | undefined;
+        format?: string | undefined;
+      }
+    | undefined
+) => string;

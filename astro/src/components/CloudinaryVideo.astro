@@ -1,0 +1,28 @@
+---
+import { generateCloudinaryVideoURL } from "@utils/cloudinary";
+
+const { class: className, video: node, width } = Astro.props;
+let video: string | undefined;
+
+try {
+  video =
+    node?.public_id && generateCloudinaryVideoURL(node.public_id, { width });
+} catch (error) {
+  console.error(error);
+}
+---
+
+{
+  video && (
+    <video
+      autoplay
+      playsinline
+      loop
+      muted
+      class={`w-full h-full object-contain ${className || ""}`}
+    >
+      <source src={video} type="video/mp4" />
+      Sorry, your browser doesn&#39;t support embedded videos.
+    </video>
+  )
+}
