@@ -2,8 +2,12 @@
 import { sanityClient } from "sanity:client";
 
 import Layout from "@layouts/Layout.astro";
+
+import InfoButton from "@components/InfoButton.svelte";
 import SanityImage from "@components/SanityImage.astro";
 import CloudinaryVideo from "@components/CloudinaryVideo.astro";
+import ProjectInfo from "@components/ProjectInfo.svelte";
+
 import { projectsQuery } from "@utils/queires";
 
 import type { Project } from "../../types";
@@ -24,9 +28,9 @@ const { title, description, role, collaborators, software, gallery } =
 ---
 
 <Layout logoActive>
-  <header class="relative mt-logo text-h1 z-10 mix-blend-difference">
+  <header class="relative mt-logo text-h1 z-50 mix-blend-difference">
     <h1 class="inline text-grey-invert">{title}</h1>
-    <button class="inline text-dark-grey-invert">Info</button>
+    <InfoButton client:load />
   </header>
 
   <ul
@@ -56,4 +60,6 @@ const { title, description, role, collaborators, software, gallery } =
       })
     }
   </ul>
+
+  <ProjectInfo client:load />
 </Layout>
