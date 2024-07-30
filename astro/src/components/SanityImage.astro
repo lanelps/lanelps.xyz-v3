@@ -1,0 +1,28 @@
+---
+import { getImageProps } from "@utils/sanity";
+import type { Image } from "../types";
+
+const { image: node, width } = Astro.props;
+let image: Image | undefined;
+
+try {
+  image = node && node.asset && getImageProps({ image: node, maxWidth: width });
+} catch (error) {
+  console.error(error);
+}
+---
+
+{
+  image && (
+    <img
+      class="w-full h-full object-cover"
+      src={image.src}
+      srcset={image.srcset}
+      sizes={image.sizes}
+      width={image.width}
+      height={image.height}
+      alt={node.alt || ""}
+      title={node.alt}
+    />
+  )
+}
