@@ -51,7 +51,7 @@ export default defineType({
       options: {
         list: [
           {title: 'Full Width', value: 'full'},
-          {title: 'Centered', value: 'centered'},
+          {title: 'Center', value: 'center'},
           {title: 'Left', value: 'left'},
           {title: 'Right', value: 'right'},
         ],
