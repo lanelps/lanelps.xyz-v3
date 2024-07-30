@@ -1,0 +1,28 @@
+---
+import { sanityClient } from "sanity:client";
+
+import Layout from "@layouts/Layout.astro";
+import { projectsQuery } from "@utils/queires";
+
+import type { Project } from "../../types";
+
+export async function getStaticPaths() {
+  const projects: Project[] = await sanityClient.fetch(projectsQuery);
+
+  return projects.map(({ slug, title }) => {
+    return {
+      params: { slug: slug.current },
+      props: { title },
+    };
+  });
+}
+
+const { title } = Astro.props;
+---
+
+<Layout logoActive>
+  <header class="mt-logo text-h1">
+    <h1 class="inline text-grey">{title}</h1>
+    <button class="inline text-dark-grey">Info</button>
+  </header>
+</Layout>

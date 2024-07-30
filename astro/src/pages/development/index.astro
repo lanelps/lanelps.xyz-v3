@@ -1,0 +1,30 @@
+---
+import { sanityClient } from "sanity:client";
+
+import Layout from "@layouts/Layout.astro";
+import { projectsQuery } from "@utils/queires";
+
+import type { Project } from "../../types";
+
+const projects: Project[] = await sanityClient.fetch(projectsQuery);
+---
+
+<Layout>
+  <ul class="mt-logo">
+    {
+      projects.map((project, index) => {
+        const projectIndex = index + 1 > 9 ? index + 1 : `0${index + 1}`;
+        const url = "/development/" + project.slug.current;
+
+        return (
+          <li class="text-h1">
+            <span class="text-grey">{projectIndex}</span>
+            <a href={url} class="text-dark-grey">
+              {project.title}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</Layout>
