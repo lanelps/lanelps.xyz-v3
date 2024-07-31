@@ -5,9 +5,10 @@ export const projectsQuery = `*[_type == "project"]{
     slug, 
     title,
     description,
-    role,
+    categories,
     collaborators,
     software,
+    date,
     cover {
         ${media}
     },

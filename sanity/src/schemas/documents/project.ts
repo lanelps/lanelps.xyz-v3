@@ -27,9 +27,10 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'role',
-      title: 'Role',
-      type: 'string',
+      name: 'categories',
+      title: 'Categories',
+      type: 'array',
+      of: [{type: 'string'}],
     }),
     defineField({
       name: 'collaborators',
@@ -42,6 +43,14 @@ export default defineType({
       title: 'Software',
       type: 'array',
       of: [{type: 'string'}],
+    }),
+    defineField({
+      name: 'date',
+      title: 'Date',
+      type: 'date',
+      options: {
+        dateFormat: 'YYYY-MM-DD',
+      },
     }),
     defineField({
       name: 'cover',

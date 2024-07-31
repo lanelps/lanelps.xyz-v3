@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Project } from "../types";
 
-  let { projects }: { projects: Array<Project> } = $props();
+  let { projects }: { projects: Project[] } = $props();
 
   let activeProject = $state(0);
   let mouseY = $state(0);
@@ -52,11 +52,20 @@
           <span class="col-span-3 space-x-[0.25ch] sm-t:col-span-2">
             <span>{projectIndex + 1}/{projects.length}</span>
             <h2 class="inline text-blue-invert">{project.title}</h2>
-            <p class="inline">{project.category.join(", ")}</p>
+            {#if project?.categories && project?.categories?.length > 0}
+              <p class="inline">{project.categories?.join(", ")}</p>
+            {/if}
           </span>
 
-          <p class="sm-t:col-span-2">{project.description}</p>
-          <p class="hidden sm-t:block">{project.year}</p>
+          {#if project?.collaborators && project?.collaborators?.length > 0}
+            <p class="sm-t:col-span-2">{project.collaborators.join(", ")}</p>
+          {/if}
+
+          {#if project?.date}
+            <p class="hidden sm-t:block">
+              {new Date(project.date).getFullYear()}
+            </p>
+          {/if}
         </header>
 
         <div class="grid-main h-full w-full">

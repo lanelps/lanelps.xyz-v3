@@ -1,32 +1,13 @@
 ---
+import { sanityClient } from "sanity:client";
+
 import Layout from "@layouts/Layout.astro";
 import FeaturedProjects from "@components/FeaturedProjects.svelte";
+import { projectsQuery } from "@utils/queires";
 
-import type { ProjectType } from "../types";
+import type { Project } from "../types";
 
-const projects: ProjectType[] = [
-  {
-    id: 1,
-    title: "Palomina",
-    category: ["Front-End Development"],
-    description: "In collaboration with Love + Money",
-    year: 2023,
-  },
-  {
-    id: 2,
-    title: "Red Rocks Golf",
-    category: ["Front-End Development", "Ecommerce"],
-    description: "In collaboration with Junior Brand Studio",
-    year: 2024,
-  },
-  {
-    id: 3,
-    title: "Smoko Season",
-    category: ["Front-End Development"],
-    description: "Jackson Grant Weddings",
-    year: 2024,
-  },
-];
+const projects: Project[] = await sanityClient.fetch(projectsQuery);
 ---
 
 <Layout>

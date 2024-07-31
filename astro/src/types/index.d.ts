@@ -65,9 +65,10 @@ export interface Project {
   slug: { current: string };
   title: string;
   description: string;
-  role: string;
-  collaborators: string;
-  software: string;
+  date?: string;
+  categories?: string[];
+  collaborators?: string[];
+  software?: string[];
   cover: Media;
   gallery: Media[];
 }
