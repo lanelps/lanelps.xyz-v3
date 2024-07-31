@@ -28,13 +28,13 @@ const { title, description, role, collaborators, software, gallery } =
 ---
 
 <Layout logoActive>
-  <header class="relative mt-logo text-h1 z-50 mix-blend-difference">
+  <header class="mt-logo text-h1 relative z-50 mix-blend-difference">
     <h1 class="inline text-grey-invert">{title}</h1>
     <InfoButton client:load />
   </header>
 
   <ul
-    class="absolute inset-0 w-full h-full overflow-y-scroll snap-y snap-mandatory"
+    class="absolute inset-0 h-full w-full snap-y snap-mandatory overflow-y-scroll"
   >
     {
       gallery.map((item) => {
@@ -48,7 +48,7 @@ const { title, description, role, collaborators, software, gallery } =
         const layoutClass = layoutClasses[item.layout] || "";
 
         return (
-          <li class="w-full h-full snap-center grid-main">
+          <li class="grid-main h-full w-full snap-center">
             {item.type === "image" && (
               <SanityImage image={item.image} class={layoutClass} />
             )}

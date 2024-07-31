@@ -46,9 +46,9 @@
 
 @layer components {
   .link {
-    @apply w-max text-b2 !text-blue bg-light-grey;
+    @apply text-b2 w-max bg-light-grey !text-blue;
   }
   .link-invert {
-    @apply w-max text-b2 !text-blue-invert bg-light-grey-invert;
+    @apply text-b2 w-max bg-light-grey-invert !text-blue-invert;
   }
 }

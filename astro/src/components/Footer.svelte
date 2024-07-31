@@ -9,11 +9,11 @@
 </script>
 
 <footer
-  class="fixed bottom-0 left-0 w-full grid-main pb-4 z-50 mix-blend-difference"
+  class="grid-main fixed bottom-0 left-0 z-50 w-full pb-4 mix-blend-difference"
 >
   <a
     href="/development"
-    class="col-start-1 col-span-2 sm-t:col-start-2 sm-t:col-span-1 link-invert"
+    class="link-invert col-span-2 col-start-1 sm-t:col-span-1 sm-t:col-start-2"
     >Development</a
   >
   <button onclick={handleClick} class="link-invert">Contact</button>

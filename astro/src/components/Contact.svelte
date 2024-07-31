@@ -13,11 +13,11 @@
 <svelte:window on:keydown={handleKeyDown} />
 
 <section
-  class="absolute w-full h-full sm-t:col-start-3 col-span-full pointer-events-none z-40 mix-blend-difference translate-x-full transition-transform ease-in-out"
+  class="pointer-events-none absolute z-40 col-span-full h-full w-full translate-x-full mix-blend-difference transition-transform ease-in-out sm-t:col-start-3"
   class:!translate-x-0={contact.isActive}
 >
   <ul
-    class="relative w-full h-full text-h1 flex flex-col justify-center"
+    class="text-h1 relative flex h-full w-full flex-col justify-center"
     class:pointer-events-auto={contact.isActive}
   >
     <li>
@@ -60,6 +60,6 @@
 </section>
 
 <div
-  class="absolute w-full h-full sm-t:col-start-3 col-span-full pointer-events-none z-30 bg-white/30 backdrop-blur-[32px] translate-x-full transition-transform"
+  class="pointer-events-none absolute z-30 col-span-full h-full w-full translate-x-full bg-white/30 backdrop-blur-[32px] transition-transform sm-t:col-start-3"
   class:!translate-x-0={contact.isActive}
 ></div>
