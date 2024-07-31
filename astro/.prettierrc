@@ -18,7 +18,8 @@
     "prettier-plugin-svelte",
     "prettier-plugin-tailwindcss"
   ],
-  "singleQuote": true,
+  "singleQuote": false,
   "tailwindConfig": "./tailwind.config.mjs",
+  "tailwindPreserveWhitespace": false,
   "trailingComma": "es5"
 }
