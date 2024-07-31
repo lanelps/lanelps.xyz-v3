@@ -23,7 +23,7 @@ export async function getStaticPaths() {
   });
 }
 
-const { title, description, role, collaborators, software, gallery } =
+const { title, description, categories, collaborators, software, gallery } =
   Astro.props.project;
 ---
 
@@ -61,5 +61,11 @@ const { title, description, role, collaborators, software, gallery } =
     }
   </ul>
 
-  <ProjectInfo client:load />
+  <ProjectInfo
+    client:load
+    description={description}
+    categories={categories}
+    collaborators={collaborators}
+    software={software}
+  />
 </Layout>
