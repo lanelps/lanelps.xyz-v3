@@ -47,7 +47,7 @@
     class="grid-main text-b2 pointer-events-none absolute left-0 top-0 z-10 mt-[--logo-mobile] h-max w-full select-none text-grey-invert mix-blend-difference will-change-transform sm-t:mt-0 sm-t:translate-y-[var(--ty)]"
   >
     <span class="col-span-3 space-x-[0.25ch] sm-t:col-span-2">
-      <span>{activeProject}/{projects.length}</span>
+      <span>{activeProject + 1}/{projects.length}</span>
       <h2 class="inline text-blue-invert">{projects[activeProject].title}</h2>
       {#if projects[activeProject]?.categories && projects[activeProject]?.categories?.length > 0}
         <p class="inline">{projects[activeProject].categories?.join(", ")}</p>
@@ -67,7 +67,7 @@
     {/if}
   </header>
 
-  <ul bind:this={projectList} class="h-full w-full overflow-hidden">
+  <ul bind:this={projectList} class="h-screen w-full overflow-hidden">
     {@render children()}
   </ul>
 
