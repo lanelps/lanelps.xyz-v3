@@ -84,13 +84,16 @@
         >Prev</span
       >
     </button>
-    <button class="group col-span-1 col-start-3 block hover:cursor-none">
+    <a
+      href={`/development/${projects[activeProject].slug.current}`}
+      class="group col-span-1 col-start-3 block hover:cursor-none"
+    >
       <span
         style="--tx: {mouseX}px; --ty:{mouseY}px;"
         class="link pointer-events-none fixed left-0 top-0 hidden opacity-0 transition-opacity group-hover:opacity-100 sm-t:block sm-t:translate-x-[var(--tx)] sm-t:translate-y-[var(--ty)]"
         >View</span
       >
-    </button>
+    </a>
     <button
       class="group relative col-span-1 block hover:cursor-none sm-t:col-start-5 sm-t:[position:unset]"
       onclick={handleNext}
