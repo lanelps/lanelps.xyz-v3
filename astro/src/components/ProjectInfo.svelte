@@ -41,7 +41,7 @@
   </section>
 
   <div
-    class="absolute top-0 z-30 col-span-full col-start-1 h-full w-full -translate-x-full bg-white/30 backdrop-blur-[32px] transition-transform sm-t:col-span-2"
+    class="absolute top-0 z-30 col-span-full col-start-1 h-full w-full -translate-x-full bg-white/30 backdrop-blur-[32px] transition-transform sm-t:col-span-2 sm-t:col-start-1"
     class:!translate-x-0={project.isActive}
   ></div>
 </div>
