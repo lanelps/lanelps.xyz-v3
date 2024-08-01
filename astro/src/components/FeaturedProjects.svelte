@@ -7,7 +7,6 @@
 
   let activeProject = $state(0);
   let mouseY = $state(0);
-  let mouseX = $state(0);
 
   let projectList: HTMLUListElement;
 
@@ -29,7 +28,6 @@
 
   const handleMouseMove = (e: MouseEvent) => {
     mouseY = e.clientY;
-    mouseX = e.clientX;
   };
 
   $effect(() => {
@@ -73,36 +71,41 @@
     {@render children()}
   </ul>
 
-  <div class="top-logo h-body grid-main fixed left-0 w-full">
-    <button
-      class="group relative col-span-1 col-start-1 block hover:cursor-none sm-t:[position:unset]"
-      onclick={handlePrev}
-    >
-      <span
-        style="--tx: {mouseX}px; --ty:{mouseY}px;"
-        class="link pointer-events-none absolute left-0 top-[3lh] transition-opacity group-hover:opacity-100 sm-t:fixed sm-t:top-0 sm-t:translate-x-[var(--tx)] sm-t:translate-y-[var(--ty)] sm-t:opacity-0"
-        >Prev</span
+  <div
+    class="top-logo h-body grid-main fixed left-0 w-full mix-blend-difference"
+  >
+    {#if projects.length > 1}
+      <button
+        class="group relative col-span-1 col-start-1 block"
+        onclick={handlePrev}
       >
-    </button>
+        <span
+          class="link-invert pointer-events-none absolute left-0 top-[3lh] transition-opacity group-hover:opacity-100 sm-t:left-[unset] sm-t:right-0 sm-t:top-1/6 sm-t:opacity-0"
+          >Prev</span
+        >
+      </button>
+    {/if}
+
     <a
       href={`/development/${projects[activeProject].slug.current}`}
-      class="group col-span-1 col-start-3 block hover:cursor-none"
+      class="group relative col-span-1 col-start-3 block"
     >
       <span
-        style="--tx: {mouseX}px; --ty:{mouseY}px;"
-        class="link pointer-events-none fixed left-0 top-0 hidden opacity-0 transition-opacity group-hover:opacity-100 sm-t:block sm-t:translate-x-[var(--tx)] sm-t:translate-y-[var(--ty)]"
+        class="link-invert pointer-events-none absolute left-0 top-0 hidden opacity-0 transition-opacity group-hover:opacity-100 sm-t:left-1/2 sm-t:top-1/2 sm-t:block sm-t:-translate-x-1/2 sm-t:-translate-y-1/2"
         >View</span
       >
     </a>
-    <button
-      class="group relative col-span-1 block hover:cursor-none sm-t:col-start-5 sm-t:[position:unset]"
-      onclick={handleNext}
-    >
-      <span
-        style="--tx: {mouseX}px; --ty:{mouseY}px;"
-        class="link pointer-events-none absolute right-0 top-[3lh] transition-opacity group-hover:opacity-100 sm-t:fixed sm-t:left-0 sm-t:right-[unset] sm-t:top-0 sm-t:translate-x-[var(--tx)] sm-t:translate-y-[var(--ty)] sm-t:opacity-0"
-        >Next</span
+
+    {#if projects.length > 1}
+      <button
+        class="group relative col-span-1 block sm-t:col-start-5"
+        onclick={handleNext}
       >
-    </button>
+        <span
+          class="link-invert pointer-events-none absolute right-0 top-[3lh] transition-opacity group-hover:opacity-100 sm-t:left-0 sm-t:right-[unset] sm-t:top-5/6 sm-t:opacity-0"
+          >Next</span
+        >
+      </button>
+    {/if}
   </div>
 </section>
