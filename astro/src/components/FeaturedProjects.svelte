@@ -43,10 +43,10 @@
 
 <svelte:window on:mousemove={handleMouseMove} />
 
-<section class="mt-[--logo-mobile] h-full w-full sm-t:mt-0">
+<section class="h-full w-full sm-t:mt-0">
   <header
     style="--ty: {mouseY}px;"
-    class="grid-main pointer-events-none absolute left-0 top-0 z-10 h-max w-full select-none text-deep-purple-invert mix-blend-difference will-change-transform sm-t:translate-y-[var(--ty)]"
+    class="grid-main text-b2 pointer-events-none absolute left-0 top-0 z-10 mt-[--logo-mobile] h-max w-full select-none text-grey-invert mix-blend-difference will-change-transform sm-t:mt-0 sm-t:translate-y-[var(--ty)]"
   >
     <span class="col-span-3 space-x-[0.25ch] sm-t:col-span-2">
       <span>{activeProject}/{projects.length}</span>

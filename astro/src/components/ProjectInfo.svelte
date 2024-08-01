@@ -16,7 +16,7 @@
 
 <div class="grid-main pointer-events-none absolute top-0 h-full w-full">
   <section
-    class="text-b1 pointer-events-auto z-40 col-span-2 col-start-1 grid h-full w-full -translate-x-full grid-cols-subgrid grid-rows-[repeat(4,_fit-content(100%))] place-content-center gap-y-4 mix-blend-difference transition-transform ease-in-out"
+    class="text-b1 pointer-events-auto z-40 col-span-full col-start-1 grid h-full w-full -translate-x-full grid-cols-[3fr,5fr,] grid-rows-[repeat(4,_fit-content(100%))] place-content-center gap-y-4 mix-blend-difference transition-transform ease-in-out sm-t:col-span-2 sm-t:grid-cols-subgrid"
     class:!translate-x-0={project.isActive}
   >
     {#if categories.length > 0}
@@ -41,7 +41,7 @@
   </section>
 
   <div
-    class="absolute top-0 z-30 col-span-2 col-start-1 h-full w-full -translate-x-full bg-white/30 backdrop-blur-[32px] transition-transform"
+    class="absolute top-0 z-30 col-span-full col-start-1 h-full w-full -translate-x-full bg-white/30 backdrop-blur-[32px] transition-transform sm-t:col-span-2"
     class:!translate-x-0={project.isActive}
   ></div>
 </div>
