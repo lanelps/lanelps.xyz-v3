@@ -1,7 +1,9 @@
 <script lang="ts">
+  import type { Snippet } from "svelte";
   import type { Project } from "../types";
 
-  let { projects }: { projects: Project[] } = $props();
+  let { projects, children }: { projects: Project[]; children: Snippet } =
+    $props();
 
   let activeProject = $state(0);
   let mouseY = $state(0);
@@ -42,39 +44,33 @@
 <svelte:window on:mousemove={handleMouseMove} />
 
 <section class="mt-[--logo-mobile] h-full w-full sm-t:mt-0">
+  <header
+    style="--ty: {mouseY}px;"
+    class="grid-main pointer-events-none absolute left-0 top-0 z-10 h-max w-full select-none text-deep-purple-invert mix-blend-difference will-change-transform sm-t:translate-y-[var(--ty)]"
+  >
+    <span class="col-span-3 space-x-[0.25ch] sm-t:col-span-2">
+      <span>{activeProject}/{projects.length}</span>
+      <h2 class="inline text-blue-invert">{projects[activeProject].title}</h2>
+      {#if projects[activeProject]?.categories && projects[activeProject]?.categories?.length > 0}
+        <p class="inline">{projects[activeProject].categories?.join(", ")}</p>
+      {/if}
+    </span>
+
+    {#if projects[activeProject]?.collaborators && projects[activeProject]?.collaborators?.length > 0}
+      <p class="sm-t:col-span-2">
+        {projects[activeProject].collaborators.join(", ")}
+      </p>
+    {/if}
+
+    {#if projects[activeProject]?.date}
+      <p class="hidden sm-t:block">
+        {new Date(projects[activeProject].date).getFullYear()}
+      </p>
+    {/if}
+  </header>
+
   <ul bind:this={projectList} class="h-full w-full overflow-hidden">
-    {#each projects as project, projectIndex}
-      <li class="text-b2 relative h-full w-full">
-        <header
-          style="--ty: {mouseY}px;"
-          class="grid-main pointer-events-none absolute left-0 top-0 z-10 h-max w-full select-none text-deep-purple-invert mix-blend-difference will-change-transform sm-t:translate-y-[var(--ty)]"
-        >
-          <span class="col-span-3 space-x-[0.25ch] sm-t:col-span-2">
-            <span>{projectIndex + 1}/{projects.length}</span>
-            <h2 class="inline text-blue-invert">{project.title}</h2>
-            {#if project?.categories && project?.categories?.length > 0}
-              <p class="inline">{project.categories?.join(", ")}</p>
-            {/if}
-          </span>
-
-          {#if project?.collaborators && project?.collaborators?.length > 0}
-            <p class="sm-t:col-span-2">{project.collaborators.join(", ")}</p>
-          {/if}
-
-          {#if project?.date}
-            <p class="hidden sm-t:block">
-              {new Date(project.date).getFullYear()}
-            </p>
-          {/if}
-        </header>
-
-        <div class="grid-main h-full w-full">
-          <div
-            class="col-span-full bg-[#89A39D] sm-t:col-span-3 sm-t:col-start-2"
-          ></div>
-        </div>
-      </li>
-    {/each}
+    {@render children()}
   </ul>
 
   <div class="top-logo h-body grid-main fixed left-0 w-full">

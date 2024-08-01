@@ -3,13 +3,43 @@ import { sanityClient } from "sanity:client";
 
 import Layout from "@layouts/Layout.astro";
 import FeaturedProjects from "@components/FeaturedProjects.svelte";
-import { projectsQuery } from "@utils/queires";
+import SanityImage from "@components/SanityImage.astro";
+import CloudinaryVideo from "@components/CloudinaryVideo.astro";
 
+import { projectsQuery } from "@utils/queires";
 import type { Project } from "../types";
 
 const projects: Project[] = await sanityClient.fetch(projectsQuery);
+
+const layoutClasses = {
+  full: "col-span-full object-cover",
+  center: "col-start-2 col-span-3 !object-contain",
+  left: "col-span-4",
+  right: "col-start-2 col-span-full",
+};
 ---
 
 <Layout>
-  <FeaturedProjects projects={projects} client:load />
+  <FeaturedProjects projects={projects} client:load>
+    {
+      projects.map((project) => (
+        <li class="text-b2 relative h-full w-full">
+          <div class="grid-main h-full w-full">
+            {project.cover.type === "image" && (
+              <SanityImage
+                image={project.cover.image}
+                class={layoutClasses[project.cover.layout]}
+              />
+            )}
+            {project.cover.type === "video" && (
+              <CloudinaryVideo
+                video={project.cover.video}
+                class={layoutClasses[project.cover.layout]}
+              />
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </FeaturedProjects>
 </Layout>
