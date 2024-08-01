@@ -7,6 +7,7 @@ import InfoButton from "@components/InfoButton.svelte";
 import SanityImage from "@components/SanityImage.astro";
 import CloudinaryVideo from "@components/CloudinaryVideo.astro";
 import ProjectInfo from "@components/ProjectInfo.svelte";
+import RichText from "@components/RichText.astro";
 
 import { projectsQuery } from "@utils/queires";
 
@@ -25,6 +26,13 @@ export async function getStaticPaths() {
 
 const { title, description, categories, collaborators, software, gallery } =
   Astro.props.project;
+
+const layoutClasses = {
+  full: "col-span-full object-cover",
+  center: "col-start-2 col-span-3 !object-contain",
+  left: "col-span-4",
+  right: "col-start-2 col-span-full",
+};
 ---
 
 <Layout logoActive>
@@ -38,13 +46,6 @@ const { title, description, categories, collaborators, software, gallery } =
   >
     {
       gallery.map((item) => {
-        const layoutClasses = {
-          full: "col-span-full",
-          center: "col-start-2 col-span-3 !object-contain",
-          left: "col-span-4",
-          right: "col-start-2 col-span-full",
-        };
-
         const layoutClass = layoutClasses[item.layout] || "";
 
         return (
@@ -63,9 +64,10 @@ const { title, description, categories, collaborators, software, gallery } =
 
   <ProjectInfo
     client:load
-    description={description}
     categories={categories}
     collaborators={collaborators}
     software={software}
-  />
+  >
+    <RichText value={description} />
+  </ProjectInfo>
 </Layout>

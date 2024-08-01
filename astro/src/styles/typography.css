@@ -34,7 +34,7 @@
   .text-b1,
   .text-b2,
   .text-caption {
-    @apply font-main text-deep-purple;
+    @apply font-main;
   }
 
   .text-h1 {

@@ -1,7 +1,7 @@
 <script>
   import { project } from "@stores/project.svelte";
 
-  let { description, categories, collaborators, software } = $props();
+  let { categories, collaborators, software, children } = $props();
 
   const handleKeyDown = (event) => {
     if (!project.isActive) return;
@@ -33,8 +33,11 @@
       <h3 class="text-grey-invert">Software</h3>
       <p class="text-deep-purple-invert">{software.join(", ")}</p>
     {/if}
-    <h3 class="text-grey-invert">Description</h3>
-    <p class="text-deep-purple-invert">{description}</p>
+
+    {#if children}
+      <h3 class="text-grey-invert">Description</h3>
+      {@render children()}
+    {/if}
   </section>
 
   <div
