@@ -2,7 +2,7 @@
   import { page } from "@stores/page.svelte";
   import { onMount } from "svelte";
 
-  const { active } = $props();
+  const { active = false } = $props();
 
   onMount(() => {
     if (!page.hasLoaded) {
