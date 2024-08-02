@@ -1,6 +1,6 @@
 import { media } from "@utils/groq";
 
-export const projectsQuery = `*[_type == "project"]{
+export const projectsQuery = `*[_type == "project"] | order(date desc) {
     _id,
     slug, 
     title,
