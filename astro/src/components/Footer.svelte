@@ -1,4 +1,5 @@
 <script>
+  import { page } from "@stores/page.svelte";
   import { contact } from "@stores/contact.svelte.ts";
   import { project } from "@stores/project.svelte.ts";
 
@@ -9,7 +10,9 @@
 </script>
 
 <footer
-  class="grid-main fixed bottom-0 left-0 z-50 w-full pb-4 mix-blend-difference"
+  class="grid-main fixed bottom-0 left-0 z-50 w-full pb-4 mix-blend-difference transition-opacity"
+  class:opacity-0={!page.hasLoaded}
+  class:pointer-events-none={!page.hasLoaded}
 >
   <a
     href="/development"
