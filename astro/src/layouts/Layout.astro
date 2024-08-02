@@ -1,9 +1,10 @@
 ---
 import "@styles/index.css";
 
-import Logo from "@components/Logo.astro";
+import Logo from "@components/Logo.svelte";
 import Guides from "@components/Guides.astro";
 import Footer from "@components/Footer.svelte";
+import Main from "@components/Main.svelte";
 import Contact from "@components/Contact.svelte";
 
 const { logoActive } = Astro.props;
@@ -25,14 +26,14 @@ const { logoActive } = Astro.props;
     }}
     class="grid-main relative h-full w-full overflow-hidden bg-white"
   >
-    <Logo active={logoActive} />
+    <Logo active={logoActive} client:load />
     <Guides />
 
     <Footer client:load />
 
-    <main class="col-span-full h-full w-full">
+    <Main client:load>
       <slot />
-    </main>
+    </Main>
 
     <Contact client:load />
   </body>

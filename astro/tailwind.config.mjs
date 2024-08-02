@@ -101,6 +101,35 @@ export default {
       transitionDuration: {
         DEFAULT: "300ms",
       },
+      keyframes: {
+        "logo-load-initial": {
+          "0%": {
+            color: "#d6bd29",
+          },
+          "66.66%": {
+            color: "#d6bd29",
+          },
+          "100%": {
+            color: "#4e4e4e",
+          },
+        },
+        "logo-load": {
+          "0%": {
+            color: "#d6bd29",
+            opacity: 1,
+          },
+          "33.33%": {
+            opacity: 1,
+          },
+          "66.66%": {
+            opacity: 0,
+          },
+        },
+      },
+      animation: {
+        "logo-load-initial": "logo-load-initial 3s forwards",
+        "logo-load": "logo-load 3s forwards",
+      },
     },
   },
   plugins: [textStrokePlugin],
