@@ -43,14 +43,14 @@ const layoutClasses = {
   </header>
 
   <ul
-    class="absolute inset-0 h-full w-full snap-y snap-mandatory overflow-y-scroll"
+    class="fixed inset-0 flex h-screen w-screen snap-y snap-mandatory flex-col overflow-y-scroll scroll-smooth"
   >
     {
       gallery.map((item) => {
         const layoutClass = layoutClasses[item.layout] || "";
 
         return (
-          <li class="grid-main h-full w-full snap-center">
+          <li class="grid-main h-full w-full shrink-0 snap-center snap-always">
             {item.type === "image" && (
               <SanityImage image={item.image} class={layoutClass} />
             )}
