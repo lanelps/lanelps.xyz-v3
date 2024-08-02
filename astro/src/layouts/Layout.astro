@@ -1,5 +1,6 @@
 ---
 import "@styles/index.css";
+import { ViewTransitions } from "astro:transitions";
 
 import Logo from "@components/Logo.svelte";
 import Guides from "@components/Guides.astro";
@@ -10,13 +11,18 @@ import Contact from "@components/Contact.svelte";
 const { logoActive } = Astro.props;
 ---
 
-<html lang="en" class="h-screen w-screen overflow-hidden">
+<html
+  lang="en"
+  class="h-screen w-screen overflow-hidden"
+  transition:animate="none"
+>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
+    <ViewTransitions />
   </head>
   <body
     style={{
