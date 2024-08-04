@@ -7,9 +7,21 @@ import { projectsQuery } from "@utils/queires";
 import type { Project } from "../../types";
 
 const projects: Project[] = await sanityClient.fetch(projectsQuery);
+
+const pageSEO = {
+  title: "Development",
+  description: "List of development projects",
+  keywords: [
+    "Development Projects",
+    "Web Development",
+    "Frontend Development",
+    "Web Development Portfolio",
+    "Frontend Development Portfolio",
+  ],
+};
 ---
 
-<Layout>
+<Layout seo={pageSEO}>
   <ul class="mt-logo">
     {
       projects.map((project, index) => {
