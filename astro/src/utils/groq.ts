@@ -3,6 +3,7 @@ export const image = `
     asset {
         _ref,
     },
+    "url": asset->url,
     crop {
         left,
         right,
@@ -38,4 +39,25 @@ export const media = `
         ${video}
     },
     layout,
+`;
+
+export const seoSettings = `
+    title,
+    description,
+    keywords,
+    favicon {
+        ${image}
+    },
+    image {
+        ${image}
+    },
+`;
+
+export const seoPage = `
+    title,
+    description,
+    keywords,
+    image {
+        ${image}
+    },
 `;

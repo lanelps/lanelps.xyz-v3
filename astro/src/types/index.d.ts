@@ -5,6 +5,7 @@ export interface RawImage {
   asset: {
     _ref: string;
   };
+  url?: string;
   crop?: {
     left: number;
     right: number;
@@ -60,6 +61,14 @@ export interface Media {
   layout: "full" | "center" | "left" | "right";
 }
 
+export interface SEO {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  image?: RawImage;
+  favicon?: RawImage;
+}
+
 export interface Project {
   _id: string;
   slug: { current: string };
@@ -71,6 +80,7 @@ export interface Project {
   software?: string[];
   cover: Media;
   gallery: Media[];
+  seo?: SEO;
 }
 
 export type UrlFor = (

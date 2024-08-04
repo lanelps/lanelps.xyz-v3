@@ -1,14 +1,32 @@
 ---
 import "@styles/index.css";
 import { ViewTransitions } from "astro:transitions";
+import { sanityClient } from "sanity:client";
 
 import Logo from "@components/Logo.svelte";
 import Guides from "@components/Guides.astro";
 import Footer from "@components/Footer.svelte";
 import Main from "@components/Main.svelte";
 import Contact from "@components/Contact.svelte";
+import Seo from "@components/Seo.astro";
 
-const { logoActive } = Astro.props;
+import { settingsQuery } from "@utils/queires";
+
+const { logoActive, seo } = Astro.props;
+
+const settings = await sanityClient.fetch(settingsQuery);
+
+const SEO = {
+  title: seo?.title
+    ? `${seo.title} - ${settings.seo.title}`
+    : settings.seo.title,
+  description: seo?.description || settings?.seo?.description,
+  keywords: seo?.keywords || settings?.seo?.keywords,
+  image: seo?.image?.url || settings?.seo?.image?.url,
+  favicon: settings?.seo?.favicon?.url,
+};
+
+console.log(`Seo`, SEO);
 ---
 
 <html
@@ -18,11 +36,12 @@ const { logoActive } = Astro.props;
 >
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
     <ViewTransitions />
+
+    <Seo {...SEO} />
   </head>
   <body
     style={{

@@ -4,6 +4,12 @@ export default defineType({
   name: 'project',
   title: 'Project',
   type: 'document',
+  groups: [
+    {
+      title: 'SEO',
+      name: 'seo',
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -64,6 +70,12 @@ export default defineType({
       type: 'array',
       of: [{type: 'media'}],
       validation: (Rule) => Rule.required().min(1),
+    }),
+    defineField({
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo.page',
+      group: 'seo',
     }),
   ],
 })

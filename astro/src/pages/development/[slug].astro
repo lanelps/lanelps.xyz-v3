@@ -24,8 +24,15 @@ export async function getStaticPaths() {
   });
 }
 
-const { title, description, categories, collaborators, software, gallery } =
-  Astro.props.project;
+const {
+  title,
+  description,
+  categories,
+  collaborators,
+  software,
+  gallery,
+  seo,
+} = Astro.props.project;
 
 const layoutClasses = {
   full: "col-span-full object-cover",
@@ -34,9 +41,16 @@ const layoutClasses = {
   left: "pr-[17.78vw] sm-t:pr-0 col-span-4",
   right: "col-start-2 col-span-full",
 };
+
+const pageSEO = {
+  title: seo?.title || title,
+  description: seo?.description,
+  keywords: seo?.keywords,
+  image: seo?.image?.url,
+};
 ---
 
-<Layout logoActive>
+<Layout logoActive seo={pageSEO}>
   <header class="mt-logo text-h1 relative z-50 mix-blend-difference">
     <h1 class="inline text-grey-invert">{title}</h1>
     <InfoButton client:load />
