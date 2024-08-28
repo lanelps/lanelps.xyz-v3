@@ -24,9 +24,9 @@
       <h3 class="inline text-grey-invert">Email</h3>
       <a
         class="text-dark-grey-invert text-stroke-0.2 text-stroke-blue-invert"
-        href="mailto:lanelps@gmail.com"
+        href="mailto:hello@lanelps.xyz"
         target="_blank"
-        rel="noopener noreferrer">lanelps@gmail.com</a
+        rel="noopener noreferrer">hello@lanelps.xyz</a
       >
     </li>
     <li>
