@@ -29,9 +29,14 @@ const pageSEO = {
         const url = "/development/" + project.slug.current;
 
         return (
-          <li class="text-h1">
-            <span class="text-grey">{projectIndex}</span>
-            <a href={url} class="text-dark-grey">
+          <li class="text-h1 group">
+            <span class="text-grey group-hover:text-blue/50 group-active:text-blue/30">
+              {projectIndex}
+            </span>
+            <a
+              href={url}
+              class="text-dark-grey group-hover:text-blue group-active:text-blue"
+            >
               {project.title}
             </a>
           </li>
