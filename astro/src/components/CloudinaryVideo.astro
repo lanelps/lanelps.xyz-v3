@@ -14,15 +14,29 @@ try {
 
 {
   video && (
-    <video
-      autoplay
-      playsinline
-      loop
-      muted
-      class={`h-full w-full object-contain ${className || ""}`}
-    >
-      <source src={video} type="video/mp4" />
-      Sorry, your browser doesn&#39;t support embedded videos.
-    </video>
+    <>
+      <video
+        autoplay
+        playsinline
+        loop
+        muted
+        class={`h-full w-full object-contain ${className || ""}`}
+      >
+        <source src={video} type="video/mp4" />
+        Sorry, your browser doesn&#39;t support embedded videos.
+      </video>
+    </>
   )
 }
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    let videoElements = document.querySelectorAll("video");
+
+    videoElements.forEach((vid) => {
+      if (vid.autoplay) {
+        vid.play();
+      }
+    });
+  });
+</script>
