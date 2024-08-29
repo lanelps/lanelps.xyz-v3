@@ -46,9 +46,9 @@
 
 @layer components {
   .link {
-    @apply text-b2 w-max bg-light-grey !text-blue;
+    @apply text-b2 w-max bg-light-grey !text-blue hover:bg-blue hover:!text-white focus:opacity-50 active:opacity-50;
   }
   .link-invert {
-    @apply text-b2 w-max bg-light-grey-invert !text-blue-invert;
+    @apply text-b2 w-max bg-light-grey-invert !text-blue-invert hover:bg-blue-invert hover:!text-black focus:opacity-50 active:opacity-50;
   }
 }
