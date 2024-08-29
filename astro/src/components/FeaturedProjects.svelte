@@ -67,7 +67,7 @@
     {/if}
   </header>
 
-  <ul bind:this={projectList} class="h-screen w-full overflow-hidden">
+  <ul bind:this={projectList} class="h-[100dvh] w-full overflow-hidden">
     {@render children()}
   </ul>
 
