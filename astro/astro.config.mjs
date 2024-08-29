@@ -4,7 +4,7 @@ import tailwind from "@astrojs/tailwind";
 import sanity from "@sanity/astro";
 import sitemap from "@astrojs/sitemap";
 import { loadEnv } from "vite";
-
+import partytown from "@astrojs/partytown";
 const env = {
   ...process.env,
   ...loadEnv(process.env.NODE_ENV, process.cwd(), ["SANITY_"]),
@@ -23,6 +23,11 @@ export default defineConfig({
       useCdn: false,
     }),
     sitemap(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
   ],
   prefetch: true,
 });
