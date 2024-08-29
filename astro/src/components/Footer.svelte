@@ -20,5 +20,5 @@
     >Development</a
   >
   <button onclick={handleClick} class="link-invert">Contact</button>
-  <a href="/lab" class="link-invert">Lab</a>
+  <!-- <a href="/lab" class="link-invert">Lab</a> -->
 </footer>
