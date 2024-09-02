@@ -7,6 +7,10 @@
 
   let activeProject = $state(0);
   let mouseY = $state(0);
+  let mouseX = $state(0);
+
+  let textActive = $state(false);
+  let buttonText = $state("");
 
   let projectList: HTMLUListElement;
 
@@ -28,6 +32,18 @@
 
   const handleMouseMove = (e: MouseEvent) => {
     mouseY = e.clientY;
+    mouseX = e.clientX;
+  };
+
+  const setButtonText = (text: string) => {
+    textActive = true;
+
+    if (text === buttonText) return;
+    buttonText = text;
+  };
+
+  const hideButtonText = () => {
+    textActive = false;
   };
 
   $effect(() => {
@@ -43,8 +59,7 @@
 
 <section class="h-full w-full sm-t:mt-0">
   <header
-    style="--ty: {mouseY}px;"
-    class="grid-main text-b2 pointer-events-none absolute left-0 top-0 z-10 mt-[--logo-mobile] h-max w-full select-none text-grey-invert mix-blend-difference will-change-transform sm-t:mt-0 sm-t:translate-y-[var(--ty)]"
+    class="grid-main text-b2 pointer-events-none absolute left-0 top-1/2 z-10 mt-[--logo-mobile] h-max w-full select-none text-grey-invert mix-blend-difference will-change-transform sm-t:mt-0 sm-t:translate-y-1/2"
   >
     <span class="col-span-3 space-x-[0.25ch] sm-t:col-span-2">
       <span>{activeProject + 1}/{projects.length}</span>
@@ -74,37 +89,36 @@
   <div
     class="top-logo h-body grid-main fixed left-0 w-full mix-blend-difference"
   >
+    <span
+      style="--ty: {mouseY}px; --tx: {mouseX}px"
+      class="link-invert pointer-events-none fixed left-0 top-[3lh] h-max w-max transition-opacity group-hover:opacity-100 sm-t:top-0 sm-t:translate-x-[var(--tx)] sm-t:translate-y-[var(--ty)] sm-t:opacity-0"
+      class:!opacity-100={textActive}>{buttonText}</span
+    >
+
     {#if projects.length > 1}
       <button
-        class="group relative col-span-1 col-start-1 block"
+        class="group relative col-span-1 col-start-1 block cursor-none"
         onclick={handlePrev}
-      >
-        <span
-          class="link-invert pointer-events-none absolute left-0 top-[3lh] transition-opacity group-hover:opacity-100 sm-t:left-[unset] sm-t:right-0 sm-t:top-1/6 sm-t:opacity-0"
-          >Prev</span
-        >
-      </button>
+        onmouseenter={() => setButtonText("Prev")}
+        onmouseleave={hideButtonText}
+      ></button>
     {/if}
 
     <a
       href={`/development/${projects[activeProject].slug.current}`}
-      class="group relative col-span-1 col-start-3 block"
+      class="group relative col-span-1 col-start-3 block cursor-none"
+      onmouseenter={() => setButtonText("View")}
+      onmouseleave={hideButtonText}
     >
-      <span
-        class="link-invert pointer-events-none absolute left-0 top-0 hidden opacity-0 transition-opacity group-hover:opacity-100 sm-t:left-1/2 sm-t:top-1/2 sm-t:block sm-t:-translate-x-1/2 sm-t:-translate-y-1/2"
-        >View</span
-      >
     </a>
 
     {#if projects.length > 1}
       <button
-        class="group relative col-span-1 block sm-t:col-start-5"
+        class="group relative col-span-1 block cursor-none sm-t:col-start-5"
         onclick={handleNext}
+        onmouseenter={() => setButtonText("Next")}
+        onmouseleave={hideButtonText}
       >
-        <span
-          class="link-invert pointer-events-none absolute right-0 top-[3lh] transition-opacity group-hover:opacity-100 sm-t:left-0 sm-t:right-[unset] sm-t:top-5/6 sm-t:opacity-0"
-          >Next</span
-        >
       </button>
     {/if}
   </div>
