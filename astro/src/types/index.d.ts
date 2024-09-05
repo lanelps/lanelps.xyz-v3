@@ -83,6 +83,15 @@ export interface Project {
   seo?: SEO;
 }
 
+export interface Experiment {
+  title: string;
+  type: "video" | "image" | "text";
+  size: "small" | "medium" | "large" | "xlarge";
+  src?: string;
+  link?: string;
+  text?: string;
+}
+
 export type UrlFor = (
   imgRef: RawImage,
   options?: { quality?: number }

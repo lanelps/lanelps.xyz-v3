@@ -5,10 +5,12 @@
   const { active = false } = $props();
 
   onMount(() => {
-    if (!page.hasLoaded) {
+    if (!page.hasLoaded && process.env.NODE_ENV !== "development") {
       setTimeout(() => {
         page.set(true);
       }, 3000);
+    } else {
+      page.set(true);
     }
   });
 </script>

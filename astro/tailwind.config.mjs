@@ -48,9 +48,6 @@ const { gridSpan, gridColumns } = createTailWindGrid();
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    fontFamily: {
-      main: ["Helvetica Neue", ...defaultTheme.fontFamily.sans],
-    },
     screens: {
       "xxl-d": `1920px`,
       "xl-d": `1728px`,
@@ -72,6 +69,9 @@ export default {
     gridColumnEnd: gridColumns,
     spacing: spacing(),
     extend: {
+      fontFamily: {
+        main: ["Helvetica Neue", ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         "deep-purple": {
           DEFAULT: "#141420",

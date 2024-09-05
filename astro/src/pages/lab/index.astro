@@ -1,0 +1,121 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Draggable from "@components/Draggable.svelte";
+
+import { Image } from "astro:assets";
+import CloudinaryVideo from "@components/CloudinaryVideo.astro";
+
+import type { Experiment } from "../../types";
+
+import Portrait from "@assets/img/C082813-R1-05-4.JPG";
+// import Portrait from "@assets/img/IMG_7915.png";
+
+const pageSEO = {
+  title: "Lab",
+  description: "Lab experiments",
+  keywords: [
+    "Web Development",
+    "Frontend Development",
+    "Web Development Portfolio",
+    "Frontend Development Portfolio",
+  ],
+};
+
+const sizes = {
+  small: "sm-t:max-w-[20vw]",
+  medium: "sm-t:max-w-[25vw]",
+  large: "sm-t:max-w-[33.33333vw]",
+  xlarge: "sm-t:max-w-[50vw]",
+};
+
+const experiments: Experiment[] = [
+  {
+    title: "Particles",
+    type: "video",
+    src: "lanelps/lanelps_Particles_1_tvfq5l",
+    size: "large",
+  },
+  {
+    title: "Portrait",
+    type: "image",
+    src: Portrait,
+    size: "medium",
+  },
+  {
+    title: "Pepeha/ Introduction",
+    type: "text",
+    text: `Tēnā koe.
+    Ko Tititea te maunga.
+    Ko Wānaka te Awa.
+    Ko Mātaatua tōku waka.
+    Ko Ngāpuhi tōku iwi.
+    Ko Tauwhara tōku marae.
+    Nō Tāmaki ahau.
+    Ko Le Prevost-Smith tōku whānau.
+    Ko Lane Wirihana tōku ingoa.`,
+    size: "large",
+  },
+  {
+    title: "Boids",
+    type: "video",
+    src: "lanelps/boids-layout_2_wf1z3p",
+    size: "medium",
+  },
+];
+---
+
+<Layout seo={pageSEO}>
+  <div class="h-[100dvh] overflow-x-hidden overflow-y-scroll">
+    <ul class="flex w-full flex-col sm-t:flex-row sm-t:flex-wrap">
+      {
+        experiments.map((experiment, i) => {
+          const index = i > 9 ? i + 1 : `0${i + 1}`;
+
+          return (
+            <li>
+              <Draggable client:load>
+                <div
+                  class={`pointer-events-none w-screen sm-t:w-[auto] ${sizes[experiment.size]}`}
+                >
+                  {experiment.type === "video" && (
+                    <CloudinaryVideo
+                      video={{ public_id: experiment.src }}
+                      width={960}
+                      class="select-none"
+                    />
+                  )}
+                  {experiment.type === "image" && (
+                    <Image
+                      src={experiment.src}
+                      alt={experiment.title}
+                      class="select-none object-cover"
+                    />
+                  )}
+                  {experiment.type === "text" && (
+                    <p class="!font-serif text-h1 !font-normal">
+                      {experiment.text}
+                    </p>
+                  )}
+                </div>
+
+                <header class="text-caption text-grey">
+                  <span>{index}</span>
+                  <h2 class="inline">{experiment.title}</h2>
+                </header>
+
+                {experiment?.link && (
+                  <a
+                    href={`/lab/${experiment.link}`}
+                    class="link absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none group-hover:opacity-100 sm-t:opacity-0"
+                  >
+                    View
+                  </a>
+                )}
+              </Draggable>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</Layout>
