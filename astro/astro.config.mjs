@@ -29,12 +29,5 @@ export default defineConfig({
       },
     }),
   ],
-  vite: {
-    resolve: {
-      alias: {
-        "@assets": "/src/assets",
-      },
-    },
-  },
   prefetch: true,
 });
