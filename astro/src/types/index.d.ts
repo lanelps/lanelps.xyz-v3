@@ -87,7 +87,7 @@ export interface Experiment {
   title: string;
   type: "video" | "image" | "text";
   size: "small" | "medium" | "large" | "xlarge";
-  src?: string;
+  src?: string | ImageMetadata;
   link?: string;
   text?: string;
 }

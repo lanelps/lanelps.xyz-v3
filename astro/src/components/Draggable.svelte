@@ -1,7 +1,10 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  const { children }: { children: Snippet } = $props();
+  const {
+    class: className = "",
+    children,
+  }: { class: string; children: Snippet } = $props();
 
   let canDrag = $state(false);
   let translateX = $state(0);
@@ -27,7 +30,7 @@
 
 <div
   style={`transform: translate(${translateX}px, ${translateY}px)`}
-  class="group relative flex w-max h-max cursor-grab flex-col items-end active:cursor-grabbing"
+  class={`group relative flex h-max w-max cursor-grab flex-col items-end active:cursor-grabbing ${className}`}
   class:z-30={canDrag}
   onmousedown={handleDragStart}
   onmouseup={handleDragEnd}

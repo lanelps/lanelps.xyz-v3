@@ -7,7 +7,7 @@ import CloudinaryVideo from "@components/CloudinaryVideo.astro";
 
 import type { Experiment } from "../../types";
 
-import Portrait from "@assets/img/C082813-R1-05-4.JPG";
+import Portrait from "@assets/img/C082813-R1-05-4.jpg";
 // import Portrait from "@assets/img/IMG_7915.png";
 
 const pageSEO = {
@@ -66,39 +66,41 @@ const experiments: Experiment[] = [
 
 <Layout seo={pageSEO}>
   <div class="h-[100dvh] overflow-x-hidden overflow-y-scroll">
-    <ul class="flex w-full flex-col sm-t:flex-row sm-t:flex-wrap">
+    <ul class="flex w-full flex-col bg-white sm-t:flex-row sm-t:flex-wrap">
       {
         experiments.map((experiment, i) => {
           const index = i > 9 ? i + 1 : `0${i + 1}`;
 
           return (
-            <li>
-              <Draggable client:load>
+            <Draggable class="mix-blend-difference" client:load>
+              <li>
                 <div
-                  class={`pointer-events-none w-screen sm-t:w-[auto] ${sizes[experiment.size]}`}
+                  class={`pointer-events-none w-screen invert sm-t:w-[auto] ${sizes[experiment.size]}`}
                 >
-                  {experiment.type === "video" && (
+                  {experiment.type === "video" && experiment.src && (
                     <CloudinaryVideo
                       video={{ public_id: experiment.src }}
                       width={960}
                       class="select-none"
                     />
                   )}
-                  {experiment.type === "image" && (
-                    <Image
-                      src={experiment.src}
-                      alt={experiment.title}
-                      class="select-none object-cover"
-                    />
-                  )}
+                  {experiment.type === "image" &&
+                    experiment.src &&
+                    typeof experiment.src === "object" && (
+                      <Image
+                        src={experiment.src}
+                        alt={experiment.title}
+                        class="select-none object-cover"
+                      />
+                    )}
                   {experiment.type === "text" && (
-                    <p class="!font-serif text-h1 !font-normal">
+                    <p class="!font-serif text-h1 select-none !font-normal text-deep-purple">
                       {experiment.text}
                     </p>
                   )}
                 </div>
 
-                <header class="text-caption text-grey">
+                <header class="text-caption select-none text-grey-invert">
                   <span>{index}</span>
                   <h2 class="inline">{experiment.title}</h2>
                 </header>
@@ -111,8 +113,8 @@ const experiments: Experiment[] = [
                     View
                   </a>
                 )}
-              </Draggable>
-            </li>
+              </li>
+            </Draggable>
           );
         })
       }
