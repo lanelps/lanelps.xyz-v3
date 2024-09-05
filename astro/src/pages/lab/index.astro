@@ -7,7 +7,8 @@ import CloudinaryVideo from "@components/CloudinaryVideo.astro";
 
 import type { Experiment } from "../../types";
 
-import Portrait from "@assets/img/punakaiki-portrait.jpg";
+import PunakaikiPortrait from "@assets/img/punakaiki-portrait.jpg";
+import NaoshimaPortrait from "@assets/img/naoshima-portrait.png";
 
 const pageSEO = {
   title: "Lab",
@@ -35,13 +36,13 @@ const experiments: Experiment[] = [
     size: "large",
   },
   {
-    title: "Portrait",
+    title: "Punakaiki",
     type: "image",
-    src: Portrait,
+    src: PunakaikiPortrait,
     size: "medium",
   },
   {
-    title: "Pepeha/ Introduction",
+    title: "Pepeha",
     type: "text",
     text: `Tēnā koe.
     Ko Tititea te maunga.
@@ -59,6 +60,12 @@ const experiments: Experiment[] = [
     type: "video",
     src: "lanelps/boids-layout_2_wf1z3p",
     size: "medium",
+  },
+  {
+    title: "Naoshima Island",
+    type: "image",
+    src: NaoshimaPortrait,
+    size: "small",
   },
 ];
 ---
