@@ -6,7 +6,7 @@
 </script>
 
 <main
-  class="col-span-full h-full w-full transition-opacity"
+  class="min-h-body col-span-full h-full w-full transition-opacity"
   class:opacity-0={!page.hasLoaded}
   class:pointer-events-none={!page.hasLoaded}
 >

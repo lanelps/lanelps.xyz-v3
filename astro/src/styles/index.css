@@ -22,7 +22,11 @@
   }
 
   .h-body {
-    @apply h-[calc(100%-var(--logo-mobile)-var(--footer-height))];
+    @apply h-[calc(100dvh-var(--logo-mobile)-var(--footer-height))];
+  }
+
+  .min-h-body {
+    @apply min-h-[calc(100dvh-var(--logo-mobile)-var(--footer-height))];
   }
 
   @media screen("sm-t") {
@@ -39,7 +43,11 @@
     }
 
     .h-body {
-      @apply h-[calc(100%-var(--logo-desktop)-var(--footer-height))];
+      @apply h-[calc(100dvh-var(--logo-desktop)-var(--footer-height))];
+    }
+
+    .min-h-body {
+      @apply min-h-[calc(100dvh-var(--logo-desktop)-var(--footer-height))];
     }
   }
 }
