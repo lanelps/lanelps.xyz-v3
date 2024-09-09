@@ -64,7 +64,7 @@ const pageSEO = {
         const layoutClass = layoutClasses[item.layout] || "";
 
         return (
-          <li class="grid-main h-full w-full shrink-0 snap-center snap-always">
+          <li class="grid-main relative h-full w-full shrink-0 snap-center snap-always overflow-hidden">
             {item.type === "image" && (
               <SanityImage image={item.image} class={layoutClass} />
             )}
