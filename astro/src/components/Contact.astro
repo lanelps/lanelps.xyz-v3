@@ -1,24 +1,9 @@
-<script>
-  import { contact } from "@stores/contact.svelte";
-
-  const handleKeyDown = (event) => {
-    if (!contact.isActive) return;
-
-    if (event.key === "Escape") {
-      contact.close();
-    }
-  };
-</script>
-
-<svelte:window on:keydown={handleKeyDown} />
-
 <section
-  class="pointer-events-none absolute z-40 col-span-full h-full w-full translate-x-full mix-blend-difference transition-transform ease-in-out sm-t:col-start-3"
-  class:!translate-x-0={contact.isActive}
+  id="contact"
+  class="group peer pointer-events-none fixed left-0 z-40 h-full w-screen translate-x-[100vw] mix-blend-difference transition-transform target:translate-x-0 sm-t:left-[46.4vw] sm-t:w-[53.6vw] sm-t:translate-x-[53.6vw]"
 >
   <ul
-    class="text-h1 relative flex h-full w-full flex-col justify-center"
-    class:pointer-events-auto={contact.isActive}
+    class="text-h1 relative flex h-full w-full flex-col justify-center group-target:pointer-events-auto"
   >
     <li>
       <h3 class="inline text-grey-invert">Email</h3>
@@ -60,6 +45,6 @@
 </section>
 
 <div
-  class="pointer-events-none absolute z-30 col-span-full h-full w-full translate-x-full bg-white/30 backdrop-blur-[32px] transition-transform sm-t:col-start-3"
-  class:!translate-x-0={contact.isActive}
-></div>
+  class="pointer-events-none fixed left-0 z-30 h-full w-screen translate-x-[100vw] bg-white/30 backdrop-blur-[32px] transition-transform peer-target:translate-x-0 sm-t:left-[46.4vw] sm-t:w-[53.6vw] sm-t:translate-x-[53.6vw]"
+>
+</div>

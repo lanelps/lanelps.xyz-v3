@@ -60,3 +60,16 @@
     @apply text-b2 w-max bg-light-grey-invert !text-blue-invert hover:bg-blue-invert hover:!text-black focus:opacity-50 active:opacity-50;
   }
 }
+
+body.loaded #footer,
+body.loaded main {
+  @apply pointer-events-auto opacity-100;
+}
+
+#contact:target ~ #footer #footer-contact {
+  @apply hidden;
+}
+
+#contact:target ~ #footer #footer-close {
+  @apply block;
+}

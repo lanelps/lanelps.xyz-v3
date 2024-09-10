@@ -5,9 +5,8 @@ import { sanityClient } from "sanity:client";
 
 import Logo from "@components/Logo.svelte";
 import Guides from "@components/Guides.astro";
-import Footer from "@components/Footer.svelte";
-import Main from "@components/Main.svelte";
-import Contact from "@components/Contact.svelte";
+import Footer from "@components/Footer.astro";
+import Contact from "@components/Contact.astro";
 import Seo from "@components/Seo.astro";
 
 import { settingsQuery } from "@utils/queires";
@@ -55,6 +54,7 @@ const SEO = {
       gtag("config", "G-KYY4WVLNM5");
     </script>
   </head>
+
   <body
     style={{
       "--logo-mobile": "21.33333333vw",
@@ -66,12 +66,23 @@ const SEO = {
     <Logo active={logoActive} client:load />
     <Guides />
 
-    <Footer client:load />
-
-    <Main client:load>
+    <main
+      class="min-h-body pointer-events-none fixed left-0 top-0 col-span-full h-full w-full opacity-0 transition-opacity"
+    >
       <slot />
-    </Main>
+    </main>
 
-    <Contact client:load />
+    <Contact />
+    <Footer />
   </body>
+  
+  <script>
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (window.location.hash) {
+          window.location.hash = "";
+        }
+      }
+    });
+  </script>
 </html>
