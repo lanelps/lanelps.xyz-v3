@@ -13,27 +13,27 @@
     "@astrojs/check": "^0.9.3",
     "@astrojs/partytown": "^2.1.2",
     "@astrojs/sitemap": "^3.1.6",
-    "@astrojs/svelte": "^5.7.0",
-    "@astrojs/tailwind": "^5.1.0",
-    "@cloudinary/transformation-builder-sdk": "^1.14.1",
-    "@cloudinary/url-gen": "^1.20.0",
-    "@sanity/astro": "^3.1.4",
-    "@sanity/client": "^6.21.3",
+    "@astrojs/svelte": "^5.7.1",
+    "@astrojs/tailwind": "^5.1.1",
+    "@cloudinary/transformation-builder-sdk": "^1.15.1",
+    "@cloudinary/url-gen": "^1.21.0",
+    "@sanity/astro": "^3.1.6",
+    "@sanity/client": "^6.22.0",
     "@sanity/image-url": "^1.0.2",
-    "@sanity/visual-editing": "^2.1.9",
-    "astro": "^4.14.5",
+    "@sanity/visual-editing": "^2.1.10",
+    "astro": "^4.15.9",
     "astro-portabletext": "^0.10.0",
-    "sanity": "^3.56.0",
+    "sanity": "^3.58.0",
     "sharp": "^0.33.5",
     "svelte": "5.0.0-next.196",
-    "tailwindcss": "^3.4.10",
-    "typescript": "^5.5.4",
-    "vite": "^5.4.2"
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8"
   },
   "devDependencies": {
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-svelte": "^3.2.6",
-    "prettier-plugin-tailwindcss": "^0.6.6"
+    "prettier-plugin-svelte": "^3.2.7",
+    "prettier-plugin-tailwindcss": "^0.6.8"
   }
 }
