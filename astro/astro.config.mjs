@@ -32,7 +32,7 @@ export default defineConfig({
   prefetch: true,
   redirects: {
     "/about": "/",
-    "/work/[...slug]": "/development/[...slug]",
+    // "/work/[...slug]": "/development/[...slug]",
     "/contact": "/",
   },
 });
