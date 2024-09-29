@@ -3,10 +3,9 @@ import { sanityClient } from "sanity:client";
 
 import Layout from "@layouts/Layout.astro";
 
-import InfoButton from "@components/InfoButton.svelte";
 import SanityImage from "@components/SanityImage.astro";
 import CloudinaryVideo from "@components/CloudinaryVideo.astro";
-import ProjectInfo from "@components/ProjectInfo.svelte";
+import ProjectInfo from "@components/ProjectInfo.astro";
 import RichText from "@components/RichText.astro";
 
 import { projectsQuery } from "@utils/queires";
@@ -51,9 +50,21 @@ const pageSEO = {
 ---
 
 <Layout logoActive seo={pageSEO}>
-  <header class="mt-logo text-h1 relative z-50 mix-blend-difference">
+  <ProjectInfo
+    categories={categories}
+    collaborators={collaborators}
+    software={software}
+  >
+    <RichText value={description} />
+  </ProjectInfo>
+
+  <header
+    id="project-header"
+    class="mt-logo text-h1 relative z-50 mix-blend-difference"
+  >
     <h1 class="inline text-grey-invert">{title}</h1>
-    <InfoButton client:load />
+    <a id="info-open" href="#info" class="text-dark-grey-invert">Info</a>
+    <a id="info-close" href="##" class="hidden text-dark-grey-invert">Close</a>
   </header>
 
   <ul
@@ -76,13 +87,4 @@ const pageSEO = {
       })
     }
   </ul>
-
-  <ProjectInfo
-    client:load
-    categories={categories}
-    collaborators={collaborators}
-    software={software}
-  >
-    <RichText value={description} />
-  </ProjectInfo>
 </Layout>

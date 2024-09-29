@@ -69,7 +69,13 @@ body.loaded main {
 #contact:target ~ #footer #footer-contact {
   @apply hidden;
 }
-
 #contact:target ~ #footer #footer-close {
   @apply block;
+}
+
+#info:target ~ #project-header #info-open {
+  @apply hidden;
+}
+#info:target ~ #project-header #info-close {
+  @apply inline-block;
 }
