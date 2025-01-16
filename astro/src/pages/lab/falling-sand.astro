@@ -1,0 +1,23 @@
+---
+import Layout from "@layouts/Layout.astro";
+import SandCanvas from "@components/lab/SandCanvas.svelte";
+
+const pageSEO = {
+  title: "Prodcedural Wibbly Wobs",
+  description:
+    "Prodcedural Wibbly Wobs lab experiment, using html5 canvas and javascript",
+  keywords: [
+    "Experiment",
+    "Web Development",
+    "Frontend Development",
+    "Web Development Portfolio",
+    "Frontend Development Portfolio",
+  ],
+};
+---
+
+<Layout seo={pageSEO}>
+  <div class="h-screen">
+    <SandCanvas client:load />
+  </div>
+</Layout>

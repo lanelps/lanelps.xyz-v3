@@ -67,6 +67,13 @@ const experiments: Experiment[] = [
     src: NaoshimaPortrait,
     size: "small",
   },
+  {
+    title: "Falling Sand",
+    type: "image",
+    src: NaoshimaPortrait,
+    link: "falling-sand",
+    size: "medium",
+  },
 ];
 ---
 
@@ -100,7 +107,7 @@ const experiments: Experiment[] = [
                       />
                     )}
                   {experiment.type === "text" && (
-                    <p class="!font-serif text-h1 select-none !font-normal text-deep-purple">
+                    <p class="text-h1 select-none !font-serif !font-normal text-deep-purple">
                       {experiment.text}
                     </p>
                   )}
