@@ -125,6 +125,40 @@
 
     setup();
     draw();
+
+    const drawACell = (x: number, y: number) => {
+      const i = Math.floor(y / pixelWidth);
+      const j = Math.floor(x / pixelWidth);
+
+      if (i >= 0 && i < rows && j >= 0 && j < cols) {
+        grid[i][j] = 1;
+      }
+    };
+
+    const handleMouseDown = (e: MouseEvent) => {
+      const interval = setInterval(() => {
+        drawACell(mouseX, mouseY);
+      }, 1000 / 60);
+
+      const handleMouseMove = (e: MouseEvent) => {
+        drawACell(mouseX, mouseY);
+      };
+
+      const handleMouseUp = (e: MouseEvent) => {
+        clearInterval(interval);
+        canvas.removeEventListener("mousemove", handleMouseMove);
+        canvas.removeEventListener("mouseup", handleMouseUp);
+      };
+
+      canvas.addEventListener("mousemove", handleMouseMove);
+      canvas.addEventListener("mouseup", handleMouseUp);
+    };
+
+    canvas.addEventListener("mousedown", handleMouseDown);
+
+    return () => {
+      canvas.removeEventListener("mousedown", handleMouseDown);
+    };
   });
 </script>
 
