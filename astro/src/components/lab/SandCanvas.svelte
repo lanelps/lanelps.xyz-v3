@@ -131,7 +131,7 @@
       const i = Math.floor(y / pixelWidth);
       const j = Math.floor(x / pixelWidth);
 
-      if (i >= 0 && i < rows && j >= 0 && j < cols) {
+      if (i >= 0 && i < rows && j >= 0 && j < cols && grid[i][j] === 0) {
         grid[i][j] = hue;
       }
 
