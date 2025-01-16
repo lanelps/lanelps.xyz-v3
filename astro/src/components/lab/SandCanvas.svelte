@@ -55,6 +55,7 @@
     const pixelWidth = 10;
     let grid: number[][];
     let rows: number, cols: number;
+    let hue = 1;
 
     const setup = () => {
       rows = Math.floor(canvas.height / resolution / pixelWidth);
@@ -81,10 +82,10 @@
           const y = i * pixelWidth;
           const x = j * pixelWidth;
 
-          if (grid[i][j] === 1) {
+          if (grid[i][j] > 0) {
             ctx.beginPath();
             ctx.rect(x, y, pixelWidth, pixelWidth);
-            ctx.fillStyle = "white";
+            ctx.fillStyle = `hsl(${grid[i][j]}, 100%, 50%)`;
             ctx.fill();
           }
         }
@@ -97,7 +98,7 @@
           let state = grid[i][j];
 
           // if it's a live cell
-          if (state === 1) {
+          if (state > 0) {
             // check if it's not the last row
             if (i + 1 < rows) {
               // what's below it?
@@ -131,7 +132,12 @@
       const j = Math.floor(x / pixelWidth);
 
       if (i >= 0 && i < rows && j >= 0 && j < cols) {
-        grid[i][j] = 1;
+        grid[i][j] = hue;
+      }
+
+      hue += 1;
+      if (hue > 360) {
+        hue = 1;
       }
     };
 
