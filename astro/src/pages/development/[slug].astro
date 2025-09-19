@@ -35,10 +35,9 @@ const {
 
 const layoutClasses = {
   full: "col-span-full",
-  center:
-    "col-span-full px-[8.89vw] sm-t:px-0 sm-t:col-start-2 sm-t:col-span-3",
-  left: "pr-[17.78vw] sm-t:pr-0 col-span-4",
-  right: "col-start-2 col-span-full",
+  center: "col-span-full sm-t:col-start-2 sm-t:col-span-3",
+  left: "col-span-full sm-t:col-span-4",
+  right: "sm-t:col-start-2 col-span-full",
 };
 
 const pageSEO = {
@@ -80,13 +79,13 @@ const pageSEO = {
               {item.type === "image" && (
                 <SanityImage
                   image={item.image}
-                  class={item.layout === "full" && "object-cover"}
+                  class={item.layout !== "full" && "sm-t:object-contain"}
                 />
               )}
               {item.type === "video" && (
                 <CloudinaryVideo
                   video={item.video}
-                  class={item.layout === "full" && "object-cover"}
+                  class={item.layout !== "full" && "sm-t:object-contain"}
                 />
               )}
             </div>
