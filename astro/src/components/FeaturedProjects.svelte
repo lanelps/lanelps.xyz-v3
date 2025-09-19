@@ -64,20 +64,20 @@
     <span class="col-span-3 space-x-[0.25ch] sm-t:col-span-2">
       <span>{activeProject + 1}/{projects.length}</span>
       <h2 class="inline text-blue-invert">{projects[activeProject].title}</h2>
-      {#if projects[activeProject]?.categories && projects[activeProject]?.categories?.length > 0}
+      {#if Array.isArray(projects[activeProject]?.categories) && projects[activeProject]?.categories?.length}
         <p class="inline">{projects[activeProject].categories?.join(", ")}</p>
       {/if}
     </span>
 
-    {#if projects[activeProject]?.collaborators && projects[activeProject]?.collaborators?.length > 0}
+    {#if Array.isArray(projects[activeProject]?.collaborators) && projects[activeProject]?.collaborators?.length}
       <p class="sm-t:col-span-2">
-        {projects[activeProject].collaborators.join(", ")}
+        {projects[activeProject].collaborators?.join(", ")}
       </p>
     {/if}
 
     {#if projects[activeProject]?.date}
       <p class="hidden sm-t:block">
-        {new Date(projects[activeProject].date).getFullYear()}
+        {new Date(projects[activeProject].date as string).getFullYear()}
       </p>
     {/if}
   </header>
