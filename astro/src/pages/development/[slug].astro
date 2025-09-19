@@ -34,9 +34,9 @@ const {
 } = Astro.props.project;
 
 const layoutClasses = {
-  full: "col-span-full object-contain sm-t:object-cover",
+  full: "col-span-full",
   center:
-    "col-span-full px-[8.89vw] sm-t:px-0 sm-t:col-start-2 sm-t:col-span-3 !object-contain",
+    "col-span-full px-[8.89vw] sm-t:px-0 sm-t:col-start-2 sm-t:col-span-3",
   left: "pr-[17.78vw] sm-t:pr-0 col-span-4",
   right: "col-start-2 col-span-full",
 };
@@ -68,7 +68,7 @@ const pageSEO = {
   </header>
 
   <ul
-    class="fixed inset-0 flex h-[100dvh] w-screen snap-y snap-mandatory flex-col overflow-y-scroll scroll-smooth"
+    class="fixed inset-0 flex h-dvh w-dvw snap-y snap-mandatory flex-col overflow-y-scroll scroll-smooth"
   >
     {
       gallery.map((item) => {
@@ -76,12 +76,20 @@ const pageSEO = {
 
         return (
           <li class="grid-main relative h-full w-full shrink-0 snap-center snap-always overflow-hidden">
-            {item.type === "image" && (
-              <SanityImage image={item.image} class={layoutClass} />
-            )}
-            {item.type === "video" && (
-              <CloudinaryVideo video={item.video} class={layoutClass} />
-            )}
+            <div class:list={["h-full max-h-dvh w-full", layoutClass]}>
+              {item.type === "image" && (
+                <SanityImage
+                  image={item.image}
+                  class={item.layout === "full" && "object-cover"}
+                />
+              )}
+              {item.type === "video" && (
+                <CloudinaryVideo
+                  video={item.video}
+                  class={item.layout === "full" && "object-cover"}
+                />
+              )}
+            </div>
           </li>
         );
       })
