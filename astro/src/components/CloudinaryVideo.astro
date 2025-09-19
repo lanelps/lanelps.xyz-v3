@@ -20,7 +20,7 @@ try {
         playsinline
         loop
         muted
-        class={`h-full w-full object-contain ${className || ""}`}
+        class:list={["relative h-full w-full object-contain", className]}
       >
         <source src={video} type="video/mp4" />
         Sorry, your browser doesn&#39;t support embedded videos.

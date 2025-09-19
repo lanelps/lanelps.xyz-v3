@@ -15,7 +15,7 @@ try {
 {
   image && (
     <img
-      class={`block h-full w-full object-cover ${className || ""}`}
+      class:list={["block h-full w-full object-cover", className]}
       loading="lazy"
       src={image.src}
       srcset={image.srcset}
