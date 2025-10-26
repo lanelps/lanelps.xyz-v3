@@ -1,6 +1,6 @@
 ---
 import "@styles/global.css";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { sanityClient } from "sanity:client";
 
 import Logo from "@components/Logo.svelte";
@@ -36,15 +36,16 @@ const SEO = {
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <ViewTransitions />
+    <ClientRouter />
 
     <Seo {...SEO} />
 
     <!-- Google tag (gtag.js) -->
     <script
+      is:inline
       type="text/partytown"
       src="https://www.googletagmanager.com/gtag/js?id=G-KYY4WVLNM5"></script>
-    <script type="text/partytown">
+    <script is:inline type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);

@@ -5,6 +5,7 @@ import sanity from "@sanity/astro";
 import sitemap from "@astrojs/sitemap";
 import { loadEnv } from "vite";
 import partytown from "@astrojs/partytown";
+import cloudflare from "@astrojs/cloudflare";
 const env = {
   ...process.env,
   ...loadEnv(process.env.NODE_ENV, process.cwd(), ["SANITY_"]),
@@ -41,4 +42,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+
+  adapter: cloudflare(),
 });
