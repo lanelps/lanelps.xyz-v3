@@ -28,58 +28,22 @@
   font-style: italic;
 }
 
-@layer utilities {
-  .text-h1,
-  .text-h2,
-  .text-b1,
-  .text-b2,
-  .text-caption {
-    @apply font-main;
-  }
+@utility text-h1 {
+  @apply font-main sm-t:text-[4rem] sm-t:tracking-[-0.04em] text-[1.625rem] leading-[0.9];
+}
 
-  .text-h1 {
-    /* font-size: max(1.625rem, 0.7887rem + 3.5681vw); */
-    font-size: 1.625rem;
-    line-height: 0.9;
-    letter-spacing: 0;
-  }
+@utility text-h2 {
+  @apply font-main sm-t:text-[2.5rem] text-[2rem] leading-[0.9];
+}
 
-  .text-h2 {
-    font-size: 2rem;
-    line-height: 0.9;
-  }
+@utility text-b1 {
+  @apply font-main sm-t:text-[1.5rem] text-[1rem] leading-[0.9];
+}
 
-  .text-b1 {
-    font-size: 1rem;
-    line-height: 0.9;
-  }
+@utility text-b2 {
+  @apply font-main sm-t:text-[0.875rem] text-[0.75rem] leading-[0.9];
+}
 
-  .text-b2 {
-    font-size: 0.75rem;
-    line-height: 0.9;
-  }
-
-  .text-caption {
-    font-size: 0.5625rem;
-    line-height: 0.9;
-  }
-
-  @media screen("sm-t") {
-    .text-h1 {
-      font-size: 4rem;
-      letter-spacing: -0.04em;
-    }
-
-    .text-b1 {
-      font-size: 1.5rem;
-    }
-
-    .text-b2 {
-      font-size: 0.875rem;
-    }
-
-    .text-caption {
-      font-size: 0.875rem;
-    }
-  }
+@utility text-caption {
+  @apply font-main sm-t:text-[0.875rem] text-[0.5625rem] leading-[0.9];
 }

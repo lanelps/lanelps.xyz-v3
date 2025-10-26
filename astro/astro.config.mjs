@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import svelte from "@astrojs/svelte";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import sanity from "@sanity/astro";
 import sitemap from "@astrojs/sitemap";
 import { loadEnv } from "vite";
@@ -13,9 +13,9 @@ const env = {
 // https://astro.build/config
 export default defineConfig({
   site: "https://lanelps.xyz",
+
   integrations: [
     svelte(),
-    tailwind(),
     sanity({
       projectId: env.SANITY_PROJECT_ID,
       dataset: env.SANITY_DATASET,
@@ -29,10 +29,16 @@ export default defineConfig({
       },
     }),
   ],
+
   prefetch: true,
+
   redirects: {
     "/about": "/",
     // "/work/[...slug]": "/development/[...slug]",
     "/contact": "/",
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 });

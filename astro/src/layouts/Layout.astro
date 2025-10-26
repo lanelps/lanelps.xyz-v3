@@ -1,5 +1,5 @@
 ---
-import "@styles/index.css";
+import "@styles/global.css";
 import { ViewTransitions } from "astro:transitions";
 import { sanityClient } from "sanity:client";
 
@@ -28,7 +28,7 @@ const SEO = {
 
 <html
   lang="en"
-  class="h-[100dvh] w-screen overflow-hidden"
+  class="h-dvh w-screen overflow-hidden"
   transition:animate="none"
 >
   <head>
@@ -67,16 +67,14 @@ const SEO = {
     <Guides />
 
     <main
-      class="min-h-body pointer-events-none fixed left-0 top-0 col-span-full h-full w-full opacity-0 transition-opacity"
+      class="min-h-body pointer-events-none fixed top-0 left-0 col-span-full h-full w-full opacity-0 transition-opacity"
     >
       <slot />
     </main>
 
     <Contact />
     <Footer />
-  </body>
-  
-  <script>
+  </body><script>
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         if (window.location.hash) {

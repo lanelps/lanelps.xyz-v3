@@ -19,7 +19,6 @@
     "prettier-plugin-tailwindcss"
   ],
   "singleQuote": false,
-  "tailwindConfig": "./tailwind.config.mjs",
   "tailwindPreserveWhitespace": false,
   "trailingComma": "es5"
 }
