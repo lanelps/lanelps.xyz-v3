@@ -21,7 +21,6 @@ const cld = new Cloudinary({
 const defaultOptions = {
   width: 960,
   quality: "auto:best",
-  format: "auto",
 };
 
 export const generateCloudinaryVideoURL: GenerateCloudinaryVideoURL = (

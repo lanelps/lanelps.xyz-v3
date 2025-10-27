@@ -2,18 +2,32 @@
 import { generateCloudinaryVideoURL } from "@utils/cloudinary";
 
 const { class: className, video: node, width } = Astro.props;
-let video: string | undefined;
+const preferredFormats = ["webm", "mp4"] as const;
+const sources: { src: string; type: string }[] = [];
 
-try {
-  video =
-    node?.public_id && generateCloudinaryVideoURL(node.public_id, { width });
-} catch (error) {
-  console.error(error);
+if (node?.public_id) {
+  for (const format of preferredFormats) {
+    try {
+      const src = generateCloudinaryVideoURL(node.public_id, {
+        width,
+        format,
+      });
+
+      if (src) {
+        sources.push({
+          src,
+          type: format === "mp4" ? "video/mp4" : `video/${format}`,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 ---
 
 {
-  video && (
+  sources.length > 0 && (
     <>
       <video
         autoplay
@@ -22,7 +36,9 @@ try {
         muted
         class:list={["relative h-full w-full object-cover", className]}
       >
-        <source src={video} type="video/mp4" />
+        {sources.map(({ src, type }) => (
+          <source src={src} type={type} />
+        ))}
         Sorry, your browser doesn&#39;t support embedded videos.
       </video>
     </>
