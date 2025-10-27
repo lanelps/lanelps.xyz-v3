@@ -33,7 +33,7 @@ const experiments: Experiment[] = [
   {
     title: "Particles",
     type: "video",
-    src: "lanelps/lanelps_Particles_1_tvfq5l",
+    src: "OkFEvj02UFfvwdhDrd21ZFw3CLlV99YcuYRpvYk02Abxs",
     size: "large",
   },
   {
@@ -59,7 +59,7 @@ const experiments: Experiment[] = [
   {
     title: "Boids",
     type: "video",
-    src: "lanelps/boids-layout_2_wf1z3p",
+    src: "qGeKMTStrhtWDKwKAeiUqdITc3Ox00MJ7yG01XvU3L9hA",
     size: "medium",
   },
   {
@@ -79,7 +79,7 @@ const experiments: Experiment[] = [
 ---
 
 <Layout seo={pageSEO}>
-  <div class="h-[100dvh] overflow-x-hidden overflow-y-scroll">
+  <div class="h-dvh overflow-x-hidden overflow-y-scroll">
     <ul class="sm-t:flex-row sm-t:flex-wrap flex w-full flex-col bg-white">
       {
         experiments.map((experiment, i) => {
@@ -89,12 +89,12 @@ const experiments: Experiment[] = [
             <Draggable class="mix-blend-difference" client:load>
               <li>
                 <div
-                  class={`sm-t:w-[auto] pointer-events-none w-screen invert ${sizes[experiment.size]}`}
+                  class={`sm-t:w-auto pointer-events-none w-screen invert ${sizes[experiment.size]}`}
                 >
                   {experiment.type === "video" && experiment.src && (
                     <MuxVideo
                       client:load
-                      video={{ public_id: experiment.src }}
+                      video={{ asset: { playbackId: experiment.src } }}
                       width={960}
                       class="select-none"
                     />
@@ -109,7 +109,7 @@ const experiments: Experiment[] = [
                       />
                     )}
                   {experiment.type === "text" && (
-                    <p class="text-h1 text-deep-purple !font-serif !font-normal select-none">
+                    <p class="text-h1 text-deep-purple font-serif! font-normal! select-none">
                       {experiment.text}
                     </p>
                   )}
