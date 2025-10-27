@@ -2,7 +2,7 @@
 import { getImageProps } from "@utils/sanity";
 import type { Image } from "../types";
 
-const { class: className, image: node, width } = Astro.props;
+const { class: className, imgClass, image: node, width, cover } = Astro.props;
 let image: Image | undefined;
 
 try {
@@ -14,16 +14,22 @@ try {
 
 {
   image && (
-    <img
-      class:list={["block h-full w-full object-cover", className]}
-      loading="lazy"
-      src={image.src}
-      srcset={image.srcset}
-      sizes={image.sizes}
-      width={image.width}
-      height={image.height}
-      alt={node.alt || ""}
-      title={node.alt}
-    />
+    <figure class:list={["h-full w-full overflow-hidden", className]}>
+      <img
+        class:list={[
+          "relative block h-auto w-full select-none",
+          cover ? "h-full object-cover" : "",
+          imgClass,
+        ]}
+        loading="lazy"
+        src={image.src}
+        srcset={image.srcset}
+        sizes={image.sizes}
+        width={image.width}
+        height={image.height}
+        alt={node.alt || ""}
+        title={node.alt}
+      />
+    </figure>
   )
 }

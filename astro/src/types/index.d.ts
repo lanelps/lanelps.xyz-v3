@@ -130,13 +130,10 @@ export type GetImageProps = (props: {
   customWidthSteps?: number[];
 }) => Image;
 
-export type GenerateCloudinaryVideoURL = (
-  publicId: string,
-  options?:
-    | {
-        width?: number | undefined;
-        quality?: string | undefined;
-        format?: string | undefined;
-      }
-    | undefined
-) => string;
+export interface MuxVideo {
+  asset: {
+    playbackId: string;
+    assetId: string;
+    filename: string;
+  };
+}

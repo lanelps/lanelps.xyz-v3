@@ -4,7 +4,7 @@ import { sanityClient } from "sanity:client";
 import Layout from "@layouts/Layout.astro";
 
 import SanityImage from "@components/SanityImage.astro";
-import CloudinaryVideo from "@components/CloudinaryVideo.astro";
+import MuxVideo from "@components/MuxVideo.svelte";
 import ProjectInfo from "@components/ProjectInfo.astro";
 import RichText from "@components/RichText.astro";
 
@@ -34,10 +34,22 @@ const {
 } = Astro.props.project;
 
 const layoutClasses = {
-  full: "col-span-full",
-  center: "col-span-full sm-t:col-start-2 sm-t:col-span-3",
-  left: "col-span-full sm-t:col-span-4",
-  right: "sm-t:col-start-2 col-span-full",
+  full: {
+    wrapper: "col-span-full",
+    content: "w-full h-full object-contain sm-t:object-cover",
+  },
+  center: {
+    wrapper: "col-span-full sm-t:col-start-2 sm-t:col-span-3",
+    content: "object-contain mt-[50%] -translate-y-1/2",
+  },
+  left: {
+    wrapper: "col-span-full sm-t:col-span-4",
+    content: "h-full object-contain",
+  },
+  right: {
+    wrapper: "sm-t:col-start-2 col-span-full",
+    content: "h-full object-contain",
+  },
 };
 
 const pageSEO = {
@@ -61,9 +73,9 @@ const pageSEO = {
     id="project-header"
     class="mt-logo text-h1 relative z-50 mix-blend-difference"
   >
-    <h1 class="inline text-grey-invert">{title}</h1>
+    <h1 class="text-grey-invert inline">{title}</h1>
     <a id="info-open" href="#info" class="text-dark-grey-invert">Info</a>
-    <a id="info-close" href="##" class="hidden text-dark-grey-invert">Close</a>
+    <a id="info-close" href="##" class="text-dark-grey-invert hidden">Close</a>
   </header>
 
   <ul
@@ -71,24 +83,26 @@ const pageSEO = {
   >
     {
       gallery.map((item) => {
-        const layoutClass = layoutClasses[item.layout] || "";
+        const wrapperClass = layoutClasses[item.layout].wrapper || "";
+        const contentClass = layoutClasses[item.layout].content || "";
 
         return (
           <li class="grid-main relative h-full w-full shrink-0 snap-center snap-always overflow-hidden">
-            <div class:list={["h-full max-h-dvh w-full", layoutClass]}>
-              {item.type === "image" && (
-                <SanityImage
-                  image={item.image}
-                  class={item.layout !== "full" && "sm-t:object-contain"}
-                />
-              )}
-              {item.type === "video" && (
-                <CloudinaryVideo
-                  video={item.video}
-                  class={item.layout !== "full" && "sm-t:object-contain"}
-                />
-              )}
-            </div>
+            {item.type === "image" && (
+              <SanityImage
+                image={item.image}
+                class:list={["h-full max-h-dvh w-full", wrapperClass]}
+                imgClass={contentClass}
+              />
+            )}
+            {item.type === "video" && (
+              <MuxVideo
+                client:load
+                video={item.video}
+                class:list={["h-full max-h-dvh w-full", wrapperClass]}
+                imgClass={contentClass}
+              />
+            )}
           </li>
         );
       })

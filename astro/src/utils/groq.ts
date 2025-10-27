@@ -24,10 +24,11 @@ export const image = `
 `;
 
 export const video = `
-    public_id,
-    width,
-    height,
-    "url": secure_url,
+     asset -> {
+        playbackId,
+        assetId,
+        filename,
+      },
 `;
 
 export const media = `

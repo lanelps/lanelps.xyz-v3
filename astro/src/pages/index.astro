@@ -4,7 +4,7 @@ import { sanityClient } from "sanity:client";
 import Layout from "@layouts/Layout.astro";
 import FeaturedProjects from "@components/FeaturedProjects.svelte";
 import SanityImage from "@components/SanityImage.astro";
-import CloudinaryVideo from "@components/CloudinaryVideo.astro";
+import MuxVideo from "@components/MuxVideo.svelte";
 
 import { projectsQuery } from "@utils/queires";
 import type { Project } from "../types";
@@ -12,11 +12,23 @@ import type { Project } from "../types";
 const projects: Project[] = await sanityClient.fetch(projectsQuery);
 
 const layoutClasses = {
-  full: "col-span-full object-contain sm-t:object-cover",
-  center:
-    "col-span-full px-[8.89vw] sm-t:px-0 sm-t:col-start-2 sm-t:col-span-3 !object-contain",
-  left: "pr-[17.78vw] sm-t:pr-0 col-span-4",
-  right: "col-start-2 col-span-full",
+  full: {
+    wrapper: "col-span-full",
+    content: "w-full h-full object-contain sm-t:object-cover",
+  },
+  center: {
+    wrapper:
+      "col-span-full px-[8.89vw] sm-t:px-0 sm-t:col-start-2 sm-t:col-span-3",
+    content: "object-contain mt-[50%] -translate-y-1/2",
+  },
+  left: {
+    wrapper: "pr-[17.78vw] sm-t:pr-0 col-span-4",
+    content: "h-full object-contain",
+  },
+  right: {
+    wrapper: "col-start-2 col-span-full",
+    content: "h-full object-contain",
+  },
 };
 ---
 
@@ -33,9 +45,11 @@ const layoutClasses = {
               />
             )}
             {project.cover.type === "video" && (
-              <CloudinaryVideo
+              <MuxVideo
+                client:load
                 video={project.cover.video}
-                class={layoutClasses[project.cover.layout]}
+                class={layoutClasses[project.cover.layout].wrapper}
+                imgClass={layoutClasses[project.cover.layout].content}
               />
             )}
           </div>
