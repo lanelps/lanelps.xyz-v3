@@ -8,7 +8,7 @@ import MuxVideo from "@components/MuxVideo.svelte";
 import type { Experiment } from "../../types";
 
 import PunakaikiPortrait from "@assets/img/punakaiki-portrait.jpg";
-import NaoshimaPortrait from "@assets/img/naoshima-portrait.png";
+// import NaoshimaPortrait from "@assets/img/naoshima-portrait.png";
 import FallingSand from "@assets/img/falling-sand.png";
 
 const pageSEO = {
@@ -31,12 +31,6 @@ const sizes = {
 
 const experiments: Experiment[] = [
   {
-    title: "Particles",
-    type: "video",
-    src: "YCpIXKsvSbfhSKSDkvzx7yjzR00Mop6mgMk84zxnIhiI",
-    size: "large",
-  },
-  {
     title: "Punakaiki",
     type: "image",
     src: PunakaikiPortrait,
@@ -57,17 +51,23 @@ const experiments: Experiment[] = [
     size: "large",
   },
   {
+    title: "Particles",
+    type: "video",
+    src: "YCpIXKsvSbfhSKSDkvzx7yjzR00Mop6mgMk84zxnIhiI",
+    size: "large",
+  },
+  {
     title: "Boids",
     type: "video",
     src: "rknZncjXzTUYATo4jM02ncbXCFIWVLmYIoV4eh5rkbQU",
-    size: "medium",
+    size: "large",
   },
-  {
-    title: "Naoshima Island",
-    type: "image",
-    src: NaoshimaPortrait,
-    size: "small",
-  },
+  // {
+  //   title: "Naoshima Island",
+  //   type: "image",
+  //   src: NaoshimaPortrait,
+  //   size: "small",
+  // },
   {
     title: "Falling Sand",
     type: "image",
