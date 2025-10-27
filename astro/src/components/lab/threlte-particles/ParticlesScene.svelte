@@ -7,10 +7,35 @@
 
   import Particle from "./Particle.svelte";
 
-  let rotation = $state(0);
-  let cubeBody: RigidBodyType | undefined = $state();
+  const PARTICLE_SIZE = 0.5;
+  const COLLISION_CUBE_SIZE = 5;
+  const CUBE_WIDTH = COLLISION_CUBE_SIZE * 2;
+  const PARTICLE_DIAMETER = PARTICLE_SIZE * 2.5;
+  const PARTICLES_PER_AXIS = Math.floor(CUBE_WIDTH / PARTICLE_DIAMETER);
+
+  const particlePositions: Vector3[] = [];
+  const spacing = CUBE_WIDTH / PARTICLES_PER_AXIS;
+  const offset = (CUBE_WIDTH - spacing) / 2;
+
+  for (let x = 0; x < PARTICLES_PER_AXIS; x++) {
+    for (let y = 0; y < PARTICLES_PER_AXIS; y++) {
+      for (let z = 0; z < PARTICLES_PER_AXIS; z++) {
+        particlePositions.push(
+          new Vector3(
+            x * spacing - offset,
+            y * spacing - offset + 2, // Add vertical offset to match cube position
+            z * spacing - offset
+          )
+        );
+      }
+    }
+  }
+
   const rotationEuler = new Euler();
   const rotationQuat = new Quaternion();
+
+  let rotation = $state(0);
+  let cubeBody: RigidBodyType | undefined = $state();
 
   useTask((delta) => {
     rotation += delta;
@@ -84,6 +109,13 @@
 </T.Group>
 
 <!-- Particles -->
-<Particle position={new Vector3(0, 2, 0)} />
+{#each particlePositions as position, i}
+  {@const indexIsOverHalf = i > particlePositions.length / 2}
+  <Particle
+    {position}
+    size={PARTICLE_SIZE}
+    color={indexIsOverHalf ? "#2174b8" : "#e0d7c1"}
+  />
+{/each}
 
-<Debug depthTest={false} depthWrite={false} />
+<!-- <Debug depthTest={false} depthWrite={false} /> -->

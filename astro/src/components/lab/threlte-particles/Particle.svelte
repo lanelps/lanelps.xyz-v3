@@ -6,18 +6,20 @@
 
   interface Props {
     position: Vector3;
+    size?: number;
+    color?: string;
   }
 
-  let { position }: Props = $props();
+  let { position, size = 0.5, color = "orange" }: Props = $props();
 </script>
 
 <T.Group position={position.toArray()} castShadow>
   <RigidBody type="dynamic">
-    <Collider shape="ball" args={[0.5]} />
+    <Collider shape="ball" args={[size]} />
 
     <T.Mesh>
-      <T.SphereGeometry args={[0.5]} />
-      <T.MeshStandardMaterial color="orange" />
+      <T.SphereGeometry args={[size]} />
+      <T.MeshStandardMaterial {color} />
     </T.Mesh>
   </RigidBody>
 </T.Group>
