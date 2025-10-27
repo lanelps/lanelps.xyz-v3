@@ -34,7 +34,7 @@ export default defineType({
     defineField({
       name: 'video',
       title: 'Video',
-      type: 'cloudinary.asset',
+      type: 'mux.video',
       validation: (Rule: any) =>
         Rule.custom((field: any, context: any) => {
           if (context.parent.type === 'video' && !field) {
