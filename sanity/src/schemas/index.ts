@@ -1,8 +1,7 @@
 // singletons
-import homePage from './singletons/homePage'
 import settings from './singletons/settings'
 
-const singletons = [homePage, settings] as any[]
+const singletons = [settings] as any[]
 
 // documents
 import project from './documents/project'
