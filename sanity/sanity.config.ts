@@ -1,8 +1,9 @@
-import {defineConfig} from 'sanity'
+import {defineConfig, type PluginOptions} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {presentationTool} from 'sanity/presentation'
 import {visionTool} from '@sanity/vision'
 import {cloudinarySchemaPlugin} from 'sanity-plugin-cloudinary'
+import {muxInput} from 'sanity-plugin-mux-input'
 
 import {schemaTypes} from './src/schemas'
 import deskStructure from './src/deskStructure'
@@ -22,7 +23,8 @@ export default defineConfig({
     presentationTool({previewUrl: SANITY_STUDIO_PREVIEW_URL}),
     isDev ? visionTool() : null,
     cloudinarySchemaPlugin(),
-  ].filter(Boolean),
+    muxInput(),
+  ].filter((plugin): plugin is PluginOptions => plugin !== null),
   schema: {
     types: schemaTypes,
   },
