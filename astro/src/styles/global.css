@@ -62,10 +62,8 @@
   }
 
   /* Animations */
-  --animate-logo-load-initial: logo-load-initial
-    var(--default-transition-duration) ease-in-out forwards;
-  --animate-logo-load: logo-load var(--default-transition-duration) ease-in-out
-    forwards;
+  --animate-logo-load-initial: logo-load-initial 3000ms ease-in-out forwards;
+  --animate-logo-load: logo-load 3000ms ease-in-out forwards;
 }
 
 @utility grid-main {
@@ -73,11 +71,11 @@
 }
 
 @utility mt-logo {
-  @apply sm-t:mt-[var(--logo-desktop)] mt-[var(--logo-mobile)];
+  @apply sm-t:mt-[(--logo-desktop)] mt-[(--logo-mobile)];
 }
 
 @utility top-logo {
-  @apply sm-t:top-[var(--logo-desktop)] top-[var(--logo-mobile)];
+  @apply sm-t:top-[(--logo-desktop)] top-[(--logo-mobile)];
 }
 
 @utility h-body {
@@ -89,10 +87,10 @@
 }
 
 .link {
-  @apply text-b2 bg-light-grey !text-blue hover:bg-blue w-max hover:!text-white focus:opacity-50 active:opacity-50;
+  @apply text-b2 bg-light-grey text-blue! hover:bg-blue w-max hover:text-white! focus:opacity-50 active:opacity-50;
 }
 .link-invert {
-  @apply text-b2 bg-light-grey-invert !text-blue-invert hover:bg-blue-invert w-max hover:!text-black focus:opacity-50 active:opacity-50;
+  @apply text-b2 bg-light-grey-invert text-blue-invert! hover:bg-blue-invert w-max hover:text-black! focus:opacity-50 active:opacity-50;
 }
 
 body.loaded #footer,
