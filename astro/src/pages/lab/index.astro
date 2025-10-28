@@ -88,7 +88,7 @@ const experiments: Experiment[] = [
 
 <Layout seo={pageSEO}>
   <div class="h-dvh overflow-x-hidden overflow-y-scroll">
-    <ul class="sm-t:flex-row sm-t:flex-wrap flex w-full flex-col bg-white">
+    <ul class="sm-t:flex-row sm-t:flex-wrap bg-dark-grey flex w-full flex-col">
       {
         experiments.map((experiment, i) => {
           const index = i > 9 ? i + 1 : `0${i + 1}`;
@@ -97,7 +97,10 @@ const experiments: Experiment[] = [
             <Draggable class="mix-blend-difference" client:load>
               <li>
                 <div
-                  class={`sm-t:w-auto pointer-events-none w-screen invert ${sizes[experiment.size]}`}
+                  class:list={[
+                    "sm-t:w-auto pointer-events-none w-screen",
+                    sizes[experiment.size],
+                  ]}
                 >
                   {experiment.type === "video" && experiment.src && (
                     <MuxVideo
@@ -117,13 +120,13 @@ const experiments: Experiment[] = [
                       />
                     )}
                   {experiment.type === "text" && (
-                    <p class="text-h1 text-deep-purple font-serif! font-normal! select-none">
+                    <p class="text-h1 text-deep-purple-invert font-serif! font-normal! select-none">
                       {experiment.text}
                     </p>
                   )}
                 </div>
 
-                <header class="text-caption text-grey-invert select-none">
+                <header class="text-caption text-grey select-none">
                   <span>{index}</span>
                   <h2 class="inline">{experiment.title}</h2>
                 </header>
