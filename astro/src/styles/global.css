@@ -71,11 +71,11 @@
 }
 
 @utility mt-logo {
-  @apply sm-t:mt-[(--logo-desktop)] mt-[(--logo-mobile)];
+  @apply sm-t:mt-[var(--logo-desktop)] mt-[var(--logo-mobile)];
 }
 
 @utility top-logo {
-  @apply sm-t:top-[(--logo-desktop)] top-[(--logo-mobile)];
+  @apply sm-t:top-[var(--logo-desktop)] top-[var(--logo-mobile)];
 }
 
 @utility h-body {
