@@ -2,11 +2,12 @@
   import { Canvas } from "@threlte/core";
   import { HTML } from "@threlte/extras";
   import { World } from "@threlte/rapier";
+  import { PCFSoftShadowMap } from "three";
 
   import ParticleScene from "./ParticlesScene.svelte";
 </script>
 
-<Canvas>
+<Canvas shadows={PCFSoftShadowMap}>
   <World>
     <ParticleScene />
 

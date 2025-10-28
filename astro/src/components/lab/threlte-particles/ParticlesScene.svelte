@@ -1,7 +1,13 @@
 <script lang="ts">
-  import { Euler, Quaternion, Vector3 } from "three";
-  import { T, useTask } from "@threlte/core";
-  import { OrbitControls } from "@threlte/extras";
+  import {
+    Euler,
+    Quaternion,
+    Vector3,
+    EquirectangularReflectionMapping,
+  } from "three";
+  import { T, useTask, useThrelte, useLoader } from "@threlte/core";
+  import { OrbitControls, Environment } from "@threlte/extras";
+  import { HDRLoader } from "three/examples/jsm/Addons.js";
   import { Collider, Debug, RigidBody } from "@threlte/rapier";
   import type { RigidBody as RigidBodyType } from "@dimforge/rapier3d-compat";
 
@@ -47,13 +53,33 @@
       cubeBody.setNextKinematicRotation(rotationQuat);
     }
   });
+
+  const { load } = useLoader(HDRLoader);
+  const map = load("/studio_small_09_2k.hdr", {
+    transform(texture) {
+      texture.mapping = EquirectangularReflectionMapping;
+      return texture;
+    },
+  });
 </script>
 
 <T.PerspectiveCamera makeDefault fov={45} position={[30, 1, 30]}>
   <OrbitControls enableDamping />
 </T.PerspectiveCamera>
 
-<T.DirectionalLight position={[1, 3, 1]} castShadow />
+<T.DirectionalLight
+  position={[0, 5, 0]}
+  intensity={3}
+  castShadow
+  shadow.mapSize.width={2048}
+  shadow.mapSize.height={2048}
+  shadow.camera.top={10}
+  shadow.camera.bottom={-10}
+  shadow.camera.left={-10}
+  shadow.camera.right={10}
+  shadow.radius={4}
+  shadow.bias={-0.0001}
+/>
 
 <!-- Rotation Collision Cube -->
 <T.Group position={[0, 2, 0]}>
@@ -86,6 +112,7 @@
 
 <!-- Ground -->
 <T.Group position={[0, 0, 0]}>
+  <!-- Floor -->
   <T.Mesh
     position.y={-5}
     rotation.x={-Math.PI / 2}
@@ -93,10 +120,11 @@
     receiveShadow
   >
     <T.PlaneGeometry args={[100, 100]} />
-    <T.MeshStandardMaterial color="white" />
+    <T.MeshStandardMaterial color="lightgrey" />
   </T.Mesh>
 
-  <T.Mesh
+  <!-- Wall -->
+  <!-- <T.Mesh
     position.x={-17.5}
     position.z={-17.5}
     position.y={20}
@@ -104,8 +132,8 @@
     receiveShadow
   >
     <T.PlaneGeometry args={[100, 50]} />
-    <T.MeshStandardMaterial color="white" />
-  </T.Mesh>
+    <T.MeshStandardMaterial color="lightgrey" />
+  </T.Mesh> -->
 </T.Group>
 
 <!-- Particles -->
@@ -119,3 +147,7 @@
 {/each}
 
 <!-- <Debug depthTest={false} depthWrite={false} /> -->
+
+{#await map then texture}
+  <Environment {texture} />
+{/await}

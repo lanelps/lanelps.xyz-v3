@@ -13,13 +13,21 @@
   let { position, size = 0.5, color = "orange" }: Props = $props();
 </script>
 
-<T.Group position={position.toArray()} castShadow>
+<T.Group position={position.toArray()}>
   <RigidBody type="dynamic">
     <Collider shape="ball" args={[size]} />
 
-    <T.Mesh>
-      <T.SphereGeometry args={[size]} />
-      <T.MeshStandardMaterial {color} />
+    <T.Mesh castShadow>
+      <T.SphereGeometry args={[size, 16, 16]} />
+      <T.MeshPhysicalMaterial
+        {color}
+        transparent
+        transmission={1}
+        roughness={0}
+        metalness={0}
+        ior={1.5}
+        thickness={2}
+      />
     </T.Mesh>
   </RigidBody>
 </T.Group>
