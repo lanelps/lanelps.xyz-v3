@@ -4,7 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 import sanity from "@sanity/astro";
 import sitemap from "@astrojs/sitemap";
 import { loadEnv } from "vite";
-import partytown from "@astrojs/partytown";
 import cloudflare from "@astrojs/cloudflare";
 const env = {
   ...process.env,
@@ -24,11 +23,6 @@ export default defineConfig({
       useCdn: false,
     }),
     sitemap(),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
-    }),
   ],
 
   prefetch: true,

@@ -12,7 +12,6 @@
   "dependencies": {
     "@astrojs/check": "^0.9.5",
     "@astrojs/cloudflare": "^12.6.10",
-    "@astrojs/partytown": "^2.1.4",
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/svelte": "^7.2.0",
     "@cloudinary/transformation-builder-sdk": "^1.21.2",
