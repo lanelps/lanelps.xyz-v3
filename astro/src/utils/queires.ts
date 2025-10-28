@@ -1,6 +1,6 @@
 import { media, seoSettings, seoPage } from "@utils/groq";
 
-export const projectsQuery = `*[_type == "project"] | order(date desc) {
+export const feturedProjectsQuery = `*[_type == "project" && featured == true] | order(date desc) {
     _id,
     slug, 
     title,
@@ -12,6 +12,17 @@ export const projectsQuery = `*[_type == "project"] | order(date desc) {
     cover {
         ${media}
     },
+}`;
+
+export const projectsQuery = `*[_type == "project"] | order(date desc) {
+    _id,
+    slug, 
+    title,
+    description,
+    categories,
+    collaborators,
+    software,
+    date,
     gallery[] {
         _key,
         ${media}

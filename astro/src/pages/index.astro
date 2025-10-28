@@ -6,10 +6,10 @@ import FeaturedProjects from "@components/FeaturedProjects.svelte";
 import SanityImage from "@components/SanityImage.astro";
 import MuxVideo from "@components/MuxVideo.svelte";
 
-import { projectsQuery } from "@utils/queires";
+import { feturedProjectsQuery } from "@utils/queires";
 import type { Project } from "../types";
 
-const projects: Project[] = await sanityClient.fetch(projectsQuery);
+const projects: Project[] = await sanityClient.fetch(feturedProjectsQuery);
 
 const layoutClasses = {
   full: {

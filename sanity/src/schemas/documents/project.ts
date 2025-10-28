@@ -28,6 +28,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean',
+      description: 'Whether to feature this project on the homepage.',
+      initialValue: false,
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'portableText',
@@ -91,4 +98,16 @@ export default defineType({
       group: 'seo',
     }),
   ],
+
+  preview: {
+    select: {
+      title: 'title',
+      slug: 'slug.current',
+      featured: 'featured',
+    },
+    prepare: ({title, slug, featured}) => ({
+      title: featured ? `${title} ⭐` : title,
+      subtitle: `/${slug}/`,
+    }),
+  },
 })
