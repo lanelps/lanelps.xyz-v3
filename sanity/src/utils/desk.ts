@@ -10,7 +10,7 @@ export const generateDocumentStructure = (
     .title(title)
     .icon(icon || DocumentIcon)
     .schemaType(type)
-    .child(S.documentTypeList(type).defaultOrdering([{field: 'title', direction: 'asc'}]))
+    .child(S.documentTypeList(type).defaultOrdering([{field: 'date', direction: 'desc'}]))
 }
 
 export const generateSingletonStructure = (
