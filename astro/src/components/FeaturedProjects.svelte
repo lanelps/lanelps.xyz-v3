@@ -57,13 +57,13 @@
 
 <svelte:window on:mousemove={handleMouseMove} />
 
-<section class="h-full w-full sm-t:mt-0">
+<section class="sm-t:mt-0 h-full w-full">
   <header
-    class="grid-main text-b2 pointer-events-none absolute left-0 top-1/2 z-10 h-max w-full select-none text-grey-invert mix-blend-difference will-change-transform sm-t:translate-y-1/2"
+    class="grid-main text-b2 text-grey-invert sm-t:translate-y-1/2 pointer-events-none absolute top-1/2 left-0 z-10 h-max w-full mix-blend-difference will-change-transform select-none"
   >
-    <span class="col-span-3 space-x-[0.25ch] sm-t:col-span-2">
+    <span class="sm-t:col-span-2 col-span-3 space-x-[0.25ch]">
       <span>{activeProject + 1}/{projects.length}</span>
-      <h2 class="inline text-blue-invert">{projects[activeProject].title}</h2>
+      <h2 class="text-blue-invert inline">{projects[activeProject].title}</h2>
       {#if Array.isArray(projects[activeProject]?.categories) && projects[activeProject]?.categories?.length}
         <p class="inline">{projects[activeProject].categories?.join(", ")}</p>
       {/if}
@@ -76,13 +76,13 @@
     {/if}
 
     {#if projects[activeProject]?.date}
-      <p class="hidden sm-t:block">
+      <p class="sm-t:block hidden">
         {new Date(projects[activeProject].date as string).getFullYear()}
       </p>
     {/if}
   </header>
 
-  <ul bind:this={projectList} class="h-[100dvh] w-full overflow-hidden">
+  <ul bind:this={projectList} class="h-dvh w-full overflow-hidden">
     {@render children()}
   </ul>
 
@@ -91,19 +91,21 @@
   >
     <span
       style="--ty: {mouseY}px; --tx: {mouseX}px"
-      class="link-invert pointer-events-none fixed left-0 top-0 hidden h-max w-max transition-opacity group-hover:opacity-100 sm-t:block sm-t:translate-x-[var(--tx)] sm-t:translate-y-[var(--ty)] sm-t:opacity-0"
-      class:!opacity-100={textActive}>{buttonText}</span
+      class={[
+        "link-invert sm-t:block sm-t:translate-x-[var(--tx)] sm-t:translate-y-[var(--ty)] sm-t:opacity-0 pointer-events-none fixed top-0 left-0 hidden h-max w-max transition-opacity group-hover:opacity-100",
+        textActive && "opacity-100!",
+      ]}>{buttonText}</span
     >
 
     {#if projects.length > 1}
       <button
-        class="group relative col-span-1 col-start-1 block sm-t:cursor-none"
+        class="group sm-t:cursor-none relative col-span-1 col-start-1 block"
         onclick={handlePrev}
         onmouseenter={() => setButtonText("Prev")}
         onmouseleave={hideButtonText}
       >
         <span
-          class="link-invert pointer-events-none absolute left-0 top-[3lh] sm-t:hidden"
+          class="link-invert sm-t:hidden pointer-events-none absolute top-[3lh] left-0"
           >Prev</span
         >
       </button>
@@ -111,25 +113,25 @@
 
     <a
       href={`/development/${projects[activeProject].slug.current}`}
-      class="group relative col-span-1 col-start-3 block sm-t:cursor-none"
+      class="group sm-t:cursor-none relative col-span-1 col-start-3 block"
       onmouseenter={() => setButtonText("View")}
       onmouseleave={hideButtonText}
     >
       <span
-        class="link-invert pointer-events-none absolute left-0 top-[3lh] sm-t:hidden"
+        class="link-invert sm-t:hidden pointer-events-none absolute top-[3lh] left-0"
         >View</span
       >
     </a>
 
     {#if projects.length > 1}
       <button
-        class="group relative col-span-1 block sm-t:col-start-5 sm-t:cursor-none"
+        class="group sm-t:col-start-5 sm-t:cursor-none relative col-span-1 block"
         onclick={handleNext}
         onmouseenter={() => setButtonText("Next")}
         onmouseleave={hideButtonText}
       >
         <span
-          class="link-invert pointer-events-none absolute right-0 top-[3lh] sm-t:hidden"
+          class="link-invert sm-t:hidden pointer-events-none absolute top-[3lh] right-0"
           >Next</span
         >
       </button>
