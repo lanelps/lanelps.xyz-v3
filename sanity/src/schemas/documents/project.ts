@@ -38,18 +38,30 @@ export default defineType({
       title: 'Categories',
       type: 'array',
       of: [{type: 'string'}],
+      options: {
+        layout: 'tags',
+      },
+      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: 'collaborators',
       title: 'Collaborators',
       type: 'array',
       of: [{type: 'string'}],
+      options: {
+        layout: 'tags',
+      },
+      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: 'software',
       title: 'Software',
       type: 'array',
       of: [{type: 'string'}],
+      options: {
+        layout: 'tags',
+      },
+      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: 'date',
