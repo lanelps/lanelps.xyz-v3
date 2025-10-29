@@ -137,3 +137,15 @@ export interface MuxVideo {
     filename: string;
   };
 }
+
+export interface GalleryImage {
+  type: "image";
+  image: string;
+}
+
+export interface GalleryVideo {
+  type: "video";
+  video: string;
+}
+
+export type GalleryItem = GalleryImage | GalleryVideo;

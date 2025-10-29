@@ -1,0 +1,43 @@
+---
+import Layout from "@layouts/Layout.astro";
+import MirrorGallery from "@components/lab/MirrorGallery.svelte";
+
+import type { GalleryItem } from "../../types";
+
+const pageSEO = {
+  title: "Mirror Scroll (WebGL)",
+  description: "A 3D mirror scroll effect built with WebGL and GLSL shaders.",
+  keywords: [
+    "Experiment",
+    "Web Development",
+    "Frontend Development",
+    "Web Development Portfolio",
+    "Frontend Development Portfolio",
+  ],
+};
+
+const gallery: GalleryItem[] = [
+  {
+    type: "image",
+    image: `https://picsum.photos/seed/${Math.random() * 1000}/1080/608.jpg`,
+  },
+  {
+    type: "video",
+    video: "pNd5kSVWntUQRswIkCudzSOrz9f9y1ssbI00tw3us7iM",
+  },
+  {
+    type: "image",
+    image: `https://picsum.photos/seed/${Math.random() * 1000}/1080/608.jpg`,
+  },
+  {
+    type: "video",
+    video: "FhI3Ub7Nt6UiLMyiwBhDQI5N00WQn8RCzXXgruJ2nIGw",
+  },
+];
+---
+
+<Layout seo={pageSEO}>
+  <div class="bg-light-grey h-screen">
+    <MirrorGallery gallery={gallery} client:load />
+  </div>
+</Layout>
