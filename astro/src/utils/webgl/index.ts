@@ -14,6 +14,8 @@ export interface TextureInfo {
   height: number;
   type: "image" | "video";
   videoElement?: HTMLVideoElement;
+  lastVideoTime?: number;
+  hlsInstance?: Hls;
 }
 
 export interface WebGLResources {
@@ -32,9 +34,21 @@ let totalHeight = 0;
 let isMobile = false;
 let gallery: GalleryItem[] = [];
 
+const identityMatrix = twgl.m4.identity();
+const sharedUniforms = {
+  u_projection: identityMatrix,
+  u_canvasSize: [0, 0] as [number, number],
+  u_textureSize: [0, 0] as [number, number],
+  u_yOffset: 0,
+  u_rotation: 0,
+  u_texture: null as unknown as WebGLTexture,
+};
+
 // --- Public Helpers ---
 export const setGallery = (g: GalleryItem[]) => {
   gallery = g;
+  const H = getViewportHeight();
+  totalHeight = (gallery.length + 2) * H - H;
 };
 
 export const setResources = (res: WebGLResources) => {
@@ -110,12 +124,24 @@ export const loadImage = async (
 ): Promise<TextureInfo> => {
   const img = new Image();
   img.crossOrigin = "anonymous";
+  img.decoding = "async";
+
+  const loadPromise = new Promise<void>((resolve, reject) => {
+    img.onload = () => resolve();
+    img.onerror = () => reject(new Error(`Failed to load image: ${image}`));
+  });
 
   img.src = image;
 
-  await new Promise<void>((resolve) => (img.onload = () => resolve()));
+  await loadPromise;
 
-  img.decoding = "async";
+  if ("decode" in img) {
+    try {
+      await img.decode();
+    } catch {
+      /* Fallback to onload if decode fails */
+    }
+  }
 
   const texture = twgl.createTexture(gl, {
     src: img,
@@ -140,6 +166,8 @@ export const loadVideo = async (
   video.loop = true;
   video.muted = true;
   video.playsInline = true;
+  video.preload = "auto";
+  video.setAttribute("playsinline", "");
 
   const videoSrc = `https://stream.mux.com/${url}.m3u8`;
 
@@ -147,6 +175,8 @@ export const loadVideo = async (
   const playVideo = async (vid: HTMLVideoElement) => {
     await vid.play();
   };
+
+  let hlsInstance: Hls | undefined;
 
   // If the browser supports native HLS playback
   if (video.canPlayType("application/vnd.apple.mpegurl")) {
@@ -168,14 +198,14 @@ export const loadVideo = async (
   }
   // Otherwise, if HLS.js is supported and the URL indicates an HLS stream
   else if (videoSrc.endsWith(".m3u8") && Hls.isSupported()) {
-    const hls = new Hls();
-    hls.loadSource(videoSrc);
-    hls.attachMedia(video);
+    hlsInstance = new Hls();
+    hlsInstance.loadSource(videoSrc);
+    hlsInstance.attachMedia(video);
     await new Promise<void>((resolve, reject) => {
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+      hlsInstance?.on(Hls.Events.MANIFEST_PARSED, () => {
         playVideo(video).then(resolve).catch(reject);
       });
-      hls.on(Hls.Events.ERROR, (_, data) => {
+      hlsInstance?.on(Hls.Events.ERROR, (_, data) => {
         if (data.fatal) {
           reject(new Error("HLS stream loading error"));
         }
@@ -200,6 +230,8 @@ export const loadVideo = async (
     height: video.videoHeight,
     type: "video",
     videoElement: video,
+    lastVideoTime: -1,
+    hlsInstance,
   } as TextureInfo;
 };
 
@@ -222,7 +254,9 @@ export const loadTextures = async (
 export const render = (res: WebGLResources) => {
   const { gl, programInfo, bufferInfo, textures } = res;
 
-  gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+  const canvasWidth = gl.drawingBufferWidth;
+  const canvasHeight = gl.drawingBufferHeight;
+  gl.viewport(0, 0, canvasWidth, canvasHeight);
 
   // Choose a rotation based on mobile (90° for mobile)
   const rotation = isMobile ? Math.PI / 2 : 0;
@@ -233,6 +267,10 @@ export const render = (res: WebGLResources) => {
   gl.useProgram(programInfo.program);
   twgl.setBuffersAndAttributes(gl, programInfo, bufferInfo);
 
+  sharedUniforms.u_canvasSize[0] = canvasWidth;
+  sharedUniforms.u_canvasSize[1] = canvasHeight;
+  sharedUniforms.u_rotation = rotation;
+
   textures.forEach((textureInfo, index) => {
     const yOffset = index - scrollY;
 
@@ -241,9 +279,12 @@ export const render = (res: WebGLResources) => {
 
     // Update video textures if needed.
     if (textureInfo.type === "video" && textureInfo.videoElement) {
+      const video = textureInfo.videoElement;
+      const currentTime = video.currentTime;
       if (
-        textureInfo.videoElement.readyState >=
-        textureInfo.videoElement.HAVE_CURRENT_DATA
+        video.readyState >= video.HAVE_CURRENT_DATA &&
+        (textureInfo.lastVideoTime === undefined ||
+          Math.abs(currentTime - textureInfo.lastVideoTime) > 1e-3)
       ) {
         gl.bindTexture(gl.TEXTURE_2D, textureInfo.texture);
         gl.texImage2D(
@@ -252,29 +293,32 @@ export const render = (res: WebGLResources) => {
           gl.RGBA,
           gl.RGBA,
           gl.UNSIGNED_BYTE,
-          textureInfo.videoElement
+          video
         );
+        textureInfo.lastVideoTime = currentTime;
       }
     }
 
     // Setup uniforms for this texture.
-    twgl.setUniforms(programInfo, {
-      u_projection: twgl.m4.identity(),
-      u_texture: textureInfo.texture,
-      u_canvasSize: [gl.canvas.width, gl.canvas.height],
-      u_textureSize: [textureInfo.width, textureInfo.height],
-      u_yOffset: yOffset,
-      u_rotation: rotation,
-    });
+    sharedUniforms.u_texture = textureInfo.texture;
+    sharedUniforms.u_textureSize[0] = textureInfo.width;
+    sharedUniforms.u_textureSize[1] = textureInfo.height;
+    sharedUniforms.u_yOffset = yOffset;
+
+    twgl.setUniforms(programInfo, sharedUniforms);
     twgl.drawBufferInfo(gl, bufferInfo);
   });
 };
 
 export const animateCavnas = (canvasRef: HTMLCanvasElement) => {
-  if (resources) {
-    twgl.resizeCanvasToDisplaySize(canvasRef);
-    render(resources);
+  if (!resources) return;
+
+  const resized = twgl.resizeCanvasToDisplaySize(canvasRef);
+  if (resized) {
+    handleResize();
   }
+
+  render(resources);
   rafId = requestAnimationFrame(() => animateCavnas(canvasRef));
 };
 
@@ -298,8 +342,14 @@ export const cleanup = () => {
       }
     }
 
-    textures.forEach(({ texture }) => {
-      gl.deleteTexture(texture);
+    textures.forEach((textureInfo) => {
+      gl.deleteTexture(textureInfo.texture);
+      if (textureInfo.type === "video" && textureInfo.videoElement) {
+        textureInfo.videoElement.pause();
+        textureInfo.videoElement.removeAttribute("src");
+        textureInfo.videoElement.load();
+      }
+      textureInfo.hlsInstance?.destroy();
     });
 
     // Unbind any active buffers and textures
