@@ -21,6 +21,7 @@ export default defineConfig({
       dataset: env.SANITY_DATASET,
       token: env.SANITY_TOKEN,
       useCdn: false,
+      perspective: "published",
     }),
     sitemap(),
   ],
