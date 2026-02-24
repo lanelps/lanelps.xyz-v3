@@ -23,7 +23,9 @@ export default defineConfig({
     presentationTool({previewUrl: SANITY_STUDIO_PREVIEW_URL}),
     isDev ? visionTool() : null,
     cloudinarySchemaPlugin(),
-    muxInput(),
+    muxInput({
+      max_resolution_tier: '2160p',
+    }),
   ].filter((plugin): plugin is PluginOptions => plugin !== null),
   schema: {
     types: schemaTypes,
