@@ -44,7 +44,7 @@ const layoutClasses = {
                 class={layoutClasses[project.cover.layout]}
               />
             )}
-            {project.cover.type === "video" && (
+            {project.cover.type === "video" && project.cover?.video?.asset && (
               <MuxVideo
                 client:load
                 video={project.cover.video}

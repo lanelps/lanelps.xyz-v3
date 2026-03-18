@@ -5,7 +5,7 @@ import Hls from "hls.js";
 import vs from "@utils/webgl/shaders/vertex.glsl?raw";
 import fs from "@utils/webgl/shaders/fragment.glsl?raw";
 
-import type { Image, GalleryItem } from "../../types";
+import type { GalleryItem } from "../../types";
 
 // --- Types & Interfaces ---
 export interface TextureInfo {

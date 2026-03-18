@@ -1,4 +1,4 @@
-import type { ImageUrlBuilder } from "@sanity/image-url/lib/types/builder";
+import type { ImageUrlBuilder } from "@sanity/image-url";
 
 export interface RawImage {
   alt?: string;
@@ -57,7 +57,7 @@ export interface Media {
   _key?: string | undefined;
   type: "image" | "video";
   image?: RawImage;
-  video?: Video;
+  video?: MuxVideo;
   layout: "full" | "center" | "left" | "right";
 }
 
@@ -83,14 +83,16 @@ export interface Project {
   seo?: SEO;
 }
 
-export interface Experiment {
+type ExperimentBase = {
   title: string;
-  type: "video" | "image" | "text";
   size: "small" | "medium" | "large" | "xlarge";
-  src?: string | ImageMetadata;
   link?: string;
-  text?: string;
-}
+};
+
+export type Experiment =
+  | (ExperimentBase & { type: "video"; src: string })
+  | (ExperimentBase & { type: "image"; src: ImageMetadata })
+  | (ExperimentBase & { type: "text"; text: string });
 
 export type UrlFor = (
   imgRef: RawImage,
@@ -133,8 +135,8 @@ export type GetImageProps = (props: {
 export interface MuxVideo {
   asset: {
     playbackId: string;
-    assetId: string;
-    filename: string;
+    assetId?: string;
+    filename?: string;
   };
 }
 

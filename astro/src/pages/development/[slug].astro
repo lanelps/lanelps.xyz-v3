@@ -95,7 +95,7 @@ const pageSEO = {
                 imgClass={contentClass}
               />
             )}
-            {item.type === "video" && (
+            {item.type === "video" && item?.video?.asset && (
               <MuxVideo
                 client:load
                 video={item.video}

@@ -1,5 +1,5 @@
 import { sanityClient } from "sanity:client";
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder } from "@sanity/image-url";
 
 import type {
   UrlFor,
@@ -16,7 +16,7 @@ const DEFAULT_FULL_WIDTH_STEPS = [
   320, 375, 428, 768, 960, 1280, 1366, 1440, 1536, 1728,
 ];
 
-const imageBuilder = imageUrlBuilder(sanityClient);
+const imageBuilder = createImageUrlBuilder(sanityClient);
 
 const urlFor: UrlFor = (imgRef, options) => {
   const { quality = 100 } = options || {};
