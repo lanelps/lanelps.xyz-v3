@@ -23,6 +23,7 @@ const SEO = {
   keywords: seo?.keywords || settings?.seo?.keywords,
   image: seo?.image?.url || settings?.seo?.image?.url,
   favicon: settings?.seo?.favicon?.url,
+  indexed: seo?.indexed ?? settings?.seo?.indexed ?? true,
 };
 ---
 
