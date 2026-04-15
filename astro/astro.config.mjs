@@ -1,42 +1,49 @@
 import { defineConfig } from "astro/config";
+
 import svelte from "@astrojs/svelte";
 import tailwindcss from "@tailwindcss/vite";
 import sanity from "@sanity/astro";
 import sitemap from "@astrojs/sitemap";
-import { loadEnv } from "vite";
 import cloudflare from "@astrojs/cloudflare";
-const env = {
-  ...process.env,
-  ...loadEnv(process.env.NODE_ENV, process.cwd(), ["SANITY_"]),
-};
+
+import { loadEnv } from "vite";
+
+const { SANITY_PROJECT_ID, SANITY_DATASET, SANITY_TOKEN } = loadEnv(
+  process.env.NODE_ENV || "development",
+  process.cwd(),
+  ""
+);
+
+// Check if required environment variables are present
+if (!SANITY_PROJECT_ID || !SANITY_DATASET) {
+  console.warn(
+    "Warning: Sanity project ID or dataset not defined in environment variables"
+  );
+}
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://lanelps.xyz",
 
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
     svelte(),
     sanity({
-      projectId: env.SANITY_PROJECT_ID,
-      dataset: env.SANITY_DATASET,
-      token: env.SANITY_TOKEN,
+      projectId: SANITY_PROJECT_ID,
+      dataset: SANITY_DATASET,
+      token: SANITY_TOKEN,
+      apiVersion: "2026-04-01",
       useCdn: false,
-      perspective: "published",
     }),
     sitemap(),
   ],
-
-  prefetch: true,
 
   redirects: {
     "/about": "/",
     // "/work/[...slug]": "/development/[...slug]",
     "/contact": "/",
   },
-
-  vite: {
-    plugins: [tailwindcss()],
-  },
-
   adapter: cloudflare(),
 });
