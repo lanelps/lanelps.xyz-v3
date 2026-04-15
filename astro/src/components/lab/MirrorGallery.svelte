@@ -17,7 +17,16 @@
     autoScroll?: boolean;
   }
 
-  const { gallery, autoScroll }: Props = $props();
+  const { gallery: rawGallery, autoScroll }: Props = $props();
+
+  const gallery = $derived(
+    rawGallery.map((item) =>
+      item.type === "image"
+        ? { ...item, image: `${item.image}?r=${Math.random()}` }
+        : item
+    )
+  );
+
   let canvasRef: HTMLCanvasElement;
 
   // Variables for touch controls
