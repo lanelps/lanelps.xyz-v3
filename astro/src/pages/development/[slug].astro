@@ -23,15 +23,21 @@ export async function getStaticPaths() {
   });
 }
 
+interface Props {
+  project: Project;
+}
+
 const {
-  title,
-  description,
-  categories,
-  collaborators,
-  software,
-  gallery,
-  seo,
-} = Astro.props.project;
+  project: {
+    title,
+    description,
+    categories,
+    collaborators,
+    software,
+    gallery,
+    seo,
+  },
+} = Astro.props;
 
 const layoutClasses = {
   full: {
