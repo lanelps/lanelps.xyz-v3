@@ -63,6 +63,11 @@
     // Check for native HLS support (like in Safari)
     if (videoElement.canPlayType("application/vnd.apple.mpegurl")) {
       videoElement.src = videoSrc;
+
+      if (autoplay) {
+        videoElement.muted = true;
+        videoElement.play().catch(() => {});
+      }
     } else if (Hls.isSupported()) {
       // Use hls.js for other browsers
       hls = new Hls();
