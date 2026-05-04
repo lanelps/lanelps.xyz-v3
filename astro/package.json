@@ -43,6 +43,7 @@
     "prettier-plugin-tailwindcss": "^0.8.0",
     "schema-dts": "^2.0.0",
     "typescript": "^6.0.3",
+    "vite": "^8.0.10",
     "wrangler": "^4.87.0"
   }
 }
