@@ -4,14 +4,15 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview"
+    "build": "astro build",
+    "preview": "astro build && astro preview",
+    "astro": "astro",
+    "generate-types": "wrangler types",
+    "deploy": "astro build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.9",
     "@astrojs/cloudflare": "^13.3.0",
-    "@astrojs/partytown": "^2.1.7",
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/svelte": "^8.1.0",
     "@dimforge/rapier3d-compat": "^0.19.3",
@@ -43,7 +44,9 @@
     "prettier-plugin-tailwindcss": "^0.8.0",
     "schema-dts": "^2.0.0",
     "typescript": "^6.0.3",
-    "vite": "^8.0.10",
     "wrangler": "^4.87.0"
-  }
+  },
+  "overrides": {
+		"vite": "^7"
+	}
 }
