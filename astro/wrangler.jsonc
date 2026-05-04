@@ -1,5 +1,7 @@
 {
-  "compatibility_flags": ["nodejs_compat"],
-  // Set this to today's date
-  "compatibility_date": "2026-04-15"
+  "name": "lanelps-xyz",
+  "compatibility_date": "2026-05-04",
+  "assets": {
+    "directory": "./dist"
+  }
 }
