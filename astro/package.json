@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@portabletext/types": "^4.0.2",
+    "vite": "^7",
     "eslint": "^10.3.0",
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
@@ -47,6 +48,6 @@
     "wrangler": "^4.87.0"
   },
   "overrides": {
-		"vite": "^7"
-	}
+    "vite": "^7"
+  }
 }
