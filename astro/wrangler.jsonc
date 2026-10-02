@@ -1,13 +1,17 @@
 {
-	"compatibility_date": "2026-05-04",
-	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "lanelps-xyz",
-	"main": "@astrojs/cloudflare/entrypoints/server",
-	"assets": {
-		"directory": "./dist/client",
-		"binding": "ASSETS"
-	},
-	"observability": {
-		"enabled": true
-	}
+  "compatibility_date": "2026-05-04",
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "name": "lanelps-xyz",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS",
+  },
+  "observability": {
+    "enabled": true,
+  },
+  "vars": {
+    "SANITY_DATASET": "staging",
+    "SANITY_PROJECT_ID": "k2d93j2x",
+  },
 }
