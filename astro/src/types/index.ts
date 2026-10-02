@@ -92,7 +92,7 @@ type ExperimentBase = {
 export type Experiment =
   | (ExperimentBase & { type: "video"; src: string })
   | (ExperimentBase & { type: "image"; src: ImageMetadata })
-  | (ExperimentBase & { type: "text"; text: string });
+  | (ExperimentBase & { type: "text"; text: string; lang?: string });
 
 export type UrlFor = (
   imgRef: RawImage,

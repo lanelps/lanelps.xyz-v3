@@ -39,13 +39,15 @@ const experiments: Experiment[] = [
   {
     title: "Pepeha",
     type: "text",
+    lang: "mi",
     text: `Tēnā koe.
-    Ko Tititea te maunga.
-    Ko Wānaka te Awa.
     Ko Mātaatua tōku waka.
     Ko Ngāpuhi tōku iwi.
     Ko Tauwhara tōku marae.
-    Nō Tāmaki ahau.
+    He uri ahau nō te whānau Maioha, ki te taha o tōku māmā.
+    I whānau mai ahau i Takapuna, i Tāmaki Makaurau.
+    I tipu ake ahau i Wānaka, i raro i te maru o Tititea.
+    Kei Poipiripi ahau e noho ana ināianei.
     Ko Le Prevost-Smith tōku whānau.
     Ko Lane Wirihana tōku ingoa.`,
     size: "large",
@@ -126,7 +128,10 @@ const experiments: Experiment[] = [
                       />
                     )}
                   {experiment.type === "text" && (
-                    <p class="text-h1 text-deep-purple-invert font-serif! font-normal! select-none">
+                    <p
+                      class="text-h1 text-deep-purple-invert font-serif! font-normal! whitespace-pre-line select-none"
+                      lang={experiment.lang}
+                    >
                       {experiment.text}
                     </p>
                   )}
