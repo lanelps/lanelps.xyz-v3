@@ -10,8 +10,4 @@
   "observability": {
     "enabled": true,
   },
-  "vars": {
-    "SANITY_DATASET": "staging",
-    "SANITY_PROJECT_ID": "k2d93j2x",
-  },
 }
