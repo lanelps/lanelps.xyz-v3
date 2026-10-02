@@ -45,5 +45,7 @@ export default defineConfig({
     // "/work/[...slug]": "/development/[...slug]",
     "/contact": "/",
   },
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: "compile",
+  }),
 });

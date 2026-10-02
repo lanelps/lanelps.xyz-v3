@@ -74,6 +74,10 @@
   @apply sm-t:mt-[var(--logo-desktop)] mt-[var(--logo-mobile)];
 }
 
+@utility pt-logo {
+  @apply sm-t:pt-[var(--logo-desktop)] pt-[var(--logo-mobile)];
+}
+
 @utility top-logo {
   @apply sm-t:top-[var(--logo-desktop)] top-[var(--logo-mobile)];
 }

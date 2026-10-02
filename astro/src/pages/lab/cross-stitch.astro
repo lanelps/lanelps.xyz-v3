@@ -1,0 +1,29 @@
+---
+import Layout from "@layouts/Layout.astro";
+import ThrelteCrossStitch from "@components/lab/ThrelteCrossStitch.svelte";
+
+import horseImage from "@assets/img/horse.png";
+
+const pageSEO = {
+  title: "Cross Stitch",
+  description: "Cross Stitch custom shader effect built with TSL",
+  keywords: [
+    "Experiment",
+    "Web Development",
+    "Frontend Development",
+    "Web Development Portfolio",
+    "Frontend Development Portfolio",
+  ],
+};
+---
+
+<Layout seo={pageSEO}>
+  <div class="h-screen">
+    <ThrelteCrossStitch
+      src={horseImage.src}
+      srcType="image"
+      bgSrc="https://picsum.photos/1080/608.jpg"
+      client:only="svelte"
+    />
+  </div>
+</Layout>
